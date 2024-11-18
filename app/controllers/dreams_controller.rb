@@ -1,4 +1,4 @@
-class DreamController < ApplicationController
+class DreamsController < ApplicationController
 before_action :set_dream, only: [:show]
 
   def index

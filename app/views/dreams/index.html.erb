@@ -1,0 +1,9 @@
+<h1>Ready to dream?</h1>
+
+<div id="dreams">
+  <% @dreams.each do |dream| %>
+    <%= dream.title %>
+  <% end %>
+</div>
+
+<%= link_to "New dream", new_dream_path %>
