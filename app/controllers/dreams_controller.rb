@@ -37,7 +37,7 @@ before_action :set_dream, only: [:show]
   end
 
   def dream_params
-    params.require(:dream).permit(:title, :description, :price_per_night, :category, :age_limit, :number_of_roles)
+    params.require(:dream).permit(:title, :description, :price_per_night, :category, :age_limit, :number_of_roles, :photo)
   end
 
 end
