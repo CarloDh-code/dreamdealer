@@ -11,12 +11,13 @@ before_action :set_dream, only: [:show]
 
   def new
     @dream = Dream.new
+    @categories = Dream::CATEGORIES
   end
 
   def create
     @dream = Dream.new(dream_params)
     @dream.user = current_user
-    if dream.save
+    if @dream.save
       redirect_to dream_path(@dream)
     else
       render :new, :unprocessable_entity
