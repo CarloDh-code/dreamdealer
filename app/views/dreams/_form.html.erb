@@ -1,7 +1,7 @@
  <%= simple_form_for (dream) do |f| %>
           <%= f.input :title, placeholder: "What did you dream of..." %>
           <%= f.input :description, placeholder: "Tell us more about your dream..." %>
-          <%= f.input :category, placeholder: "Select a dream type", input_html: {data: {controller: "tom-select"}} %>
+          <%= f.input :category, collection: Dream::CATEGORIES, placeholder: "Select a dream type", input_html: {data: {controller: "tom-select"}} %>
           <%= f.input :price_per_night, placeholder: "Set your price" %>
           <%= f.input :age_limit, placeholder: "Age limit" %>
           <%= f.input :number_of_roles, placeholder: "How many characters you want"%>
