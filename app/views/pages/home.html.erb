@@ -1,6 +1,32 @@
 <div class="dream-background">
   <div class="content-container">
     <h1 class="title">Welcome to Dreamdealer</h1>
+    <div class="card-container">
+    <div class="card">
+      <img src="<%= asset_path('imgcard1.png') %>" class="card-img" alt="Image 1">
+      <div class="card-body">
+        <h5 class="card-title">Le Royaume des Merveilles Cachées</h5>
+        <p class="card-text">Description of the card goes here.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="<%= asset_path('imgcard2.png') %>" class="card-img" alt="Image 2">
+      <div class="card-body">
+        <h5 class="card-title">L'ombre des Batailles Perdues</h5>
+        <p class="card-text">Description of the card goes here.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="<%= asset_path('imgcard3.png') %>" class="card-img" alt="Image 3">
+      <div class="card-body">
+        <h5 class="card-title">Sous le Signe du Ballon</h5>
+        <p class="card-text">Description of the card goes here.</p>
+      </div>
+    </div>
+</div>
+
     <%= link_to 'Discover Our Dream', dreams_path, class: 'btn-discover', class: "nav-link text-decoration-none" %>
   </div>
 </div>
