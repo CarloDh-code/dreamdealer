@@ -1,1 +1,12 @@
-// Specific CSS for your home-page
+
+.dream-background {
+  background-image: asset-url("background_home.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh; /* S'assure que l'image couvre toute la hauteur de l'écran */
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-family: 'Arial', sans-serif;
+}
