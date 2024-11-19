@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="dream-details">
+    <%= @dream.title %>
+    <%= @dream.description %>
+    <%= @dream.category %>
+    <%= @dream.number_of_roles %>
+  </div>
+  <%= link_to "Back to dreams", dreams_path, class: 'btn-btn-primary' %>
+</div>
