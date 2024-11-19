@@ -28,5 +28,11 @@
     <%= link_to "Back to the List", dreams_path, class: "btn btn-primary" %>
   </div>
 
+<div class="div">
+<%= render "formbooking", dream: @dream, booking: @booking  %>
+</div>
+
 <div>
+    <%= link_to "Back to the Dreams", dreams_path  %>
+</div>
 
