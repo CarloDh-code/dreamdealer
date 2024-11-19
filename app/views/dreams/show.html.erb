@@ -1,0 +1,12 @@
+<h1><%= @dream.title %></h1>
+<h2>Details of your next dream :</h2>
+<div>
+   <%= @dream.category %>
+   <<%= @dream.price_per_night  %>>
+      <<%= @dream.number_of_roles  %>>
+       <p><%= @dream.description %></p>
+</div>
+
+<div>
+    <%= link_to "Back to the List", dreams_path  %>
+</div>
