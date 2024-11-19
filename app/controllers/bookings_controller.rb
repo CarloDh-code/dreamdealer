@@ -3,6 +3,7 @@ class BookingsController < ApplicationController
   before_action :set_dream, only:[:create]
 
   def show
+    
   end
 
   def new
