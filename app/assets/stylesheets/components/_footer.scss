@@ -1,5 +1,39 @@
 .footer {
+  display: flex;
   justify-content: space-between;
-  background: #D9D9D9;
+  background-color: rgba(255, 255, 255, 0.3);
   margin-top: auto;
+  padding: 20px;
+  border-radius: 10px; /* Bord arrondi pour le footer */
+  height: $footer-height;
+}
+
+.footer .footer-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer .footer-links a {
+  color: #333; /* Couleur du texte des liens */
+  text-decoration: none;
+  margin-right: 15px;
+  font-weight: bold;
+  padding: 8px 16px;
+  border: 2px solid #333; /* Bordure autour des boutons */
+  border-radius: 25px; /* Bordure arrondie pour les boutons */
+  transition: all 0.3s ease; /* Transition pour un effet au survol */
+}
+
+.footer .footer-links a:hover {
+  background-color: #333; /* Changer la couleur de fond au survol */
+  color: #fff; /* Couleur du texte au survol */
+}
+
+.footer .footer-copyright {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+  color: #333;
 }

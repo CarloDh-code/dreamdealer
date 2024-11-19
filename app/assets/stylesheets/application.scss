@@ -10,3 +10,18 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+.mainbackground {
+  background-image: asset-url("background_home.png");
+  background-repeat: no-repeat;
+  height: 100vh;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-position: center;
+  background-size: cover;
+}
+
+.maincontainer {
+  min-height: calc(100vh - #{$navbar-height} - #{$footer-height});
+}
