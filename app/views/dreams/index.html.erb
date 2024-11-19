@@ -6,7 +6,11 @@
       <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
         <%= link_to dream_path(dream), class: "text-decoration-none" do %>
           <div class="card h-100" data-aos="zoom-in">
-          <%= cl_image_tag(dream.photo.key, crop: :fill, class: "card-img-top", alt: dream.title) %>
+            <% if dream.photos.attached? %>
+              <%= cl_image_tag(dream.photos[0].key, crop: :fill, class: 'card-img-top', alt: dream.title) %>
+            <% else %>
+              <%= image_tag 'dreamdefault.png', class: 'card-img-top', alt: dream.title %>
+            <% end %>
             <div class="card-body text-center">
               <h4 class="card-title"><%= dream.title %></h4>
               <p class="card-text">
