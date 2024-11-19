@@ -10,6 +10,6 @@ class Dream < ApplicationRecord
   CATEGORIES = ["action", "success", "lust", "dreamy", "adventure", "travel", "fantasy", "time traveler" ]
   validates :category, inclusion: {in: CATEGORIES}
   validates :age_limit, presence: true
-  ROLES = (1..10)
+  ROLES = (1..10).to_a
   validates :number_of_roles, inclusion: {in: ROLES}
 end

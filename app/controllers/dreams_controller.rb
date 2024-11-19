@@ -15,10 +15,10 @@ before_action :set_dream, only: [:show]
   def create
     @dream = Dream.new(dream_params)
     @dream.user = current_user
-    if dream.save
+    if @dream.save
       redirect_to dream_path(@dream)
     else
-      render :new, :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
