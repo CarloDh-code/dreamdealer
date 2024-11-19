@@ -7,7 +7,10 @@
        <p><%= @dream.description %></p>
 </div>
 
+<div class="div">
+<%= render "formbooking", dream: @dream, booking: @booking  %>
+</div>
+
 <div>
     <%= link_to "Back to the List", dreams_path  %>
-    <%= link_to "Book this dream", new_dream_booking_path %>
 </div>

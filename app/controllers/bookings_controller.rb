@@ -3,11 +3,6 @@ class BookingsController < ApplicationController
   before_action :set_dream, only:[:create]
 
   def show
-    
-  end
-
-  def new
-    @booking = Booking.new
   end
 
   def create
@@ -15,9 +10,9 @@ class BookingsController < ApplicationController
     @booking.dream = @dream
     @booking.user = current_user
     if @booking.save
-      redirect_to booking_path(@booking)
+      redirect_to dream_path(@dream)
     else
-      render :new, status: :unprocessable_entity
+      render :show, status: :unprocessable_entity
     end
   end
 
@@ -37,7 +32,7 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date)
+    params.require(:booking).permit(:start_date, :end_date, :dream_id, :user_id)
   end
 
   def set_dream
