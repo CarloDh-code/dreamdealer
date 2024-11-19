@@ -1,9 +1,15 @@
 <h1>Ready to dream?</h1>
 
-<div id="dreams">
-  <% @dreams.each do |dream| %>
-    <%= dream.title %>
-  <% end %>
+<div class="row">
+  <div id="dreams">
+    <% @dreams.each do |dream| %>
+      <div class="col-12 col-sm-6 col-md-4 mb-3">
+        <%= link_to dream_path(dream), class: "text-decoration-none" do %>
+          <div class="card-category" data-aos="zoom-in" style="background-image: url(<%= asset_path('dreamdefault.png') %>)">
+            <%= dream.title %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to "New dream", new_dream_path %>
