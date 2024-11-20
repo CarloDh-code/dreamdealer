@@ -1,14 +1,37 @@
-<%= simple_form_for(dream) do |f| %>
-  <%= f.input :title, placeholder: "What did you dream of..." %>
-  <%= f.input :description, placeholder: "Tell us more about your dream..." %>
-  <%= f.input :category,
-    collection: @categories,
-    input_html: { data: { controller: "tom-select" } },
-    label: 'Select a Category',
-    prompt: 'Choose a category' %>
-  <%= f.input :price_per_night, placeholder: "Set your price" %>
-  <%= f.input :age_limit, placeholder: "Age limit" %>
-  <%= f.input :number_of_roles, placeholder: "How many characters you want"%>
-  <%= f.input :photos, as: :file, placeholder: "Insert a mental picture of your dream", input_html: { multiple: true }%>
-  <%= f.submit class: "btn btn-flat" %>
+<%= simple_form_for(dream, html: { class: 'form-container' }) do |f| %>
+  <div class="mb-3">
+    <%= f.input :title, placeholder: "What did you dream of...", input_html: { class: 'form-control' } %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.input :description, placeholder: "Tell us more about your dream...", input_html: { class: 'form-control' } %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.input :category,
+        collection: @categories,
+        input_html: { class: 'form-control', data: { controller: "tom-select" } },
+        label: 'Select a Category',
+        prompt: 'Choose a category' %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.input :price_per_night, placeholder: "Set your price", input_html: { class: 'form-control' } %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.input :age_limit, placeholder: "Age limit", input_html: { class: 'form-control' } %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.input :number_of_roles, placeholder: "How many characters you want", input_html: { class: 'form-control' } %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.input :photos, as: :file, placeholder: "Insert a mental picture of your dream", input_html: { class: 'form-control', multiple: true } %>
+  </div>
+
+  <div class="text-center">
+    <%= f.submit "Submit", class: "btn btn-light btn-lg" %>
+  </div>
 <% end %>

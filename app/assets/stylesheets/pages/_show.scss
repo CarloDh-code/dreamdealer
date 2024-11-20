@@ -1,0 +1,9 @@
+.carousel-inner {
+  height: 300px; /* Set your desired height */
+}
+
+.carousel-inner img {
+  object-fit: cover; /* Ensures images cover the container without distortion */
+  width: 100%; /* Ensures images span the full width of the container */
+  height: 100%; /* Ensures images span the full height of the container */
+}

@@ -1,32 +1,63 @@
-<div class="dream-background">
-  <div class="content-container">
-    <h1 class="title">Welcome to Dreamdealer</h1>
-    <div class="card-container">
-    <div class="card">
-      <img src="<%= asset_path('imgcard1.png') %>" class="card-img" alt="Image 1">
-      <div class="card-body">
-        <h5 class="card-title">Le Royaume des Merveilles Cachées</h5>
-        <p class="card-text">Description of the card goes here.</p>
+<%# <div class="mainbackground"> %>
+  <div class="d-flex flex-column">
+    <div class="hero position-relative text-white text-center d-flex align-items-center" style="height: 100vh; background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/background2.png') no-repeat center center/cover;">
+      <div class="container">
+        <h1 class="display-3 fw-bold mb-3 animate-text">Live your dreams</h1>
+        <p class="lead mb-4" style="text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);"> What if you could escape the ordinary for just one night? At DreamDealer, we transform your desires into unique dream experiences.</p>
+        <%= link_to "Explore our dreams", dreams_path, class: "btn btn-light btn-lg rounded-pill px-4 shadow-sm" %>
+
+
+        <div class="container py-5">
+          <div class="text-center mb-5">
+            <h2 class="fw-bold" style="color: rgba(255, 255, 255, 0.8);">Why would you choose DreamDealer ?</h2>
+            <p class=>Explore our collection : Discover a well-chosen selection of dreams crafted by passionate creators.
+Choose your journey: Select the dream that speaks to your deepest desires.
+Let yourself go: Sit back, relax, and immerse yourself in an unforgettable experience.
+           </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow border-0" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(240, 240, 255, 0.6)); backdrop-filter: blur(10px); border-radius: 20px;">
+              <div class="card-body text-center">
+                <i class="fas fa-cloud-moon fa-3x text-primary mb-3"></i>
+                <h5 class="card-title fw-bold">Personalized Dreams</h5>
+                <p class="card-text text-muted">Choose from unique experiences tailored to your desires.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow border-0" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(240, 240, 255, 0.6)); backdrop-filter: blur(10px); border-radius: 20px;">
+              <div class="card-body text-center">
+                <i class="fas fa-star fa-3x text-warning mb-3"></i>
+                <h5 class="card-title fw-bold">Dream with your beloved</h5>
+                <p class="card-text text-muted">Share your dreams and share your adventures with your friends.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow border-0" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(240, 240, 255, 0.6)); backdrop-filter: blur(10px); border-radius: 20px;">
+              <div class="card-body text-center">
+                <i class="fas fa-dove fa-3x text-success mb-3"></i>
+                <h5 class="card-title fw-bold">Global Discoveries</h5>
+                <p class="card-text text-muted">Access dreams from all corners of the world.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="call-to-action text-center text-white py-5 position-relative" style="background: linear-gradient(45deg, rgba(58, 123, 213, 0.8), rgba(58, 213, 160, 0.8));">
+          <div class="container">
+            <h3 class="fw-bold mb-4">Ready to realise your dreams?</h3>
+            <%= link_to "Become a dreamer now", new_dream_path, class: "btn btn-outline-light btn-lg rounded-pill px-4 shadow-sm" %>
+          </div>
+        </div>
+
       </div>
     </div>
-
-    <div class="card">
-      <img src="<%= asset_path('imgcard2.png') %>" class="card-img" alt="Image 2">
-      <div class="card-body">
-        <h5 class="card-title">L'ombre des Batailles Perdues</h5>
-        <p class="card-text">Description of the card goes here.</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="<%= asset_path('imgcard3.png') %>" class="card-img" alt="Image 3">
-      <div class="card-body">
-        <h5 class="card-title">Sous le Signe du Ballon</h5>
-        <p class="card-text">Description of the card goes here.</p>
-      </div>
-    </div>
-</div>
-
-    <%= link_to 'Discover Our Dream', dreams_path, class: 'btn-discover', class: "nav-link text-decoration-none" %>
   </div>
-</div>
+<%# </div> %>

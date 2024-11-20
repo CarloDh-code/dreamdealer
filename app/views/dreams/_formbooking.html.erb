@@ -1,9 +1,21 @@
-<%= simple_form_for([dream, booking]) do |f| %>
+<%= simple_form_for([dream, booking], html: { class: "form-inline" }) do |f| %>
   <div class="form-group">
-    <%= f.input :start_date, label: "Start Date", as: :date %>
-    <%= f.input :end_date, label: "End Date", as: :date %>
+    <%= f.label :start_date, class: "form-label" %>
+    <%= f.input :start_date,
+      as: :string,
+      input_html: { class: "form-control", data: { controller: "datepicker" } },
+      label: false
+    %>
   </div>
-  <div class="actions">
-    <%= f.submit "Create Booking", class: "btn btn-flat" %>
+  <div class="form-group">
+    <%= f.label :end_date, class: "form-label" %>
+    <%= f.input :end_date,
+      as: :string,
+      input_html: { class: "form-control", data: { controller: "datepicker" } },
+      label: false
+    %>
+  </div>
+  <div class="form-group text-center">
+    <%= f.submit "Book it now", class: "btn btn-info text-white" %>
   </div>
 <% end %>
