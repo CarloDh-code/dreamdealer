@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   get 'reviews/new'
   devise_for :users
   root to: "pages#home"
+
+  get 'dashboard', to: "pages#dashboard"
+  get 'dreamsdashboard', to: "pages#dreamsdashboard"
+  get 'bookingsdashboard', to: "pages#bookingsdashboard"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
