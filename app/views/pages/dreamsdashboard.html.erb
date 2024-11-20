@@ -28,7 +28,8 @@
                     4.5 <i class="fa fa-star"></i>
                   </p>
                   <p class="text-secondary"> #of bookings <strong><%= dream.bookings.count %></strong></p>
-                  <p class="text-secondary"> total earnings: <strong><%= dream.price_per_night * dream.bookings.count %>€</strong></p>
+                  <p class="text-secondary"> total earnings: <strong><%= dream.bookings.sum(&:total_price) %>€</strong></p>
+                  <%# <p class="text-secondary"> total earnings: <strong><%= dream.bookings.sum { |booking| booking.total_price } €</strong></p> %>
                 </div>
               </div>
             <% end %>
