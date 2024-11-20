@@ -1,6 +1,8 @@
 require "open-uri"
+require "faker"
 
 
+Booking.destroy_all
 Dream.destroy_all
 User.destroy_all
 
@@ -13,23 +15,26 @@ taib = User.create!(email: "taib@dream.fr", password: "123456", nickname: "taibi
 carlos = User.create!(email: "carlo@dream.fr", password: "123456", nickname: "carlos")
 
 
-# file1 = URI.parse("https://res-console.cloudinary.com/dhwtnnav8/thumbnails/v1/image/upload/v1732030487/ZHJlYW1kZWFsZXIvYWVsNmN2ZXJlaWhlczlwMWxobmk=/drilldown").open
-# dream_picture = Dream.new(title: "NES", body: "A great console")
-# dream_picture.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
-# dream_picture.save
+url = "http://tmdb.lewagon.com/movie/top_rated"
 
-
-dream_1 = Dream.create!(title: "A dream full of stars"  ,
-              description: "It is a lovely day in my mind" ,
-              category: ["action", "success", "lust", "dreamy", "adventure", "travel", "fantasy", "time traveler"].sample,
-              price_per_night: rand(25..50),
-              age_limit: rand(12..20) ,
-              number_of_roles: rand(1..4) ,
-              user: antou
-            )
-file1 = URI.parse("https://www.meshistoiresdusoir.fr/static/images/histoires/histoires-de-chevaliers-le-chevalier-courageux-et-la-quete-pour-proteger-le-royaume-544.jpg").open
-dream_1.photo.attach(io: file1, filename: "dream1.png", content_type: "image/png")
-
+10.times do |i|
+  movies = JSON.parse(URI.open("#{url}?page=#{i + 1}").read)["results"]
+  movies.each do |movie|
+    puts "Creating #{movie["title"]}"
+    base_poster_url = "https://image.tmdb.org/t/p/original"
+    dream = Dream.create!(title: movie["title"],
+      description: movie["overview"] ,
+      category: ["action", "success", "lust", "dreamy", "adventure", "travel", "fantasy", "time traveler"].sample,
+      price_per_night: rand(25..100),
+      age_limit: rand(12..20) ,
+      number_of_roles: rand(1..4) ,
+      user: [antou, taib, carlos, mik].sample
+    )
+    file_photo = URI.parse("#{base_poster_url}#{movie["backdrop_path"]}").open
+    dream.photos.attach(io: file_photo, filename: "dream#{i + 1}.png", content_type: "image/png")
+  end
+end
+puts "finished"
 
 
 # dream_2 = Dream.create!(title: "A dream full of love"  ,
