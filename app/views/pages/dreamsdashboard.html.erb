@@ -1,57 +1,73 @@
 <div class="container display">
-  <div class="d-flex justify-content bg-light p-3">
-    <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
-    </a>
-    <h3> <%= @user.nickname %> </h3>
-  </div>
-
-  <div class="row">
-    <p> <%=@dreams.count%> dreams created, keep dreaming!</p>
-      <%# My dreams (created) %>
-      <div class="col-md-8 text-center">
-        <h2>Dreams created</h2>
-        <% @dreams.each do |dream| %>
-          <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
-            <%= link_to dream_path(dream), class: "text-decoration-none" do %>
-              <div class="card h-100" data-aos="zoom-in">
-                <% if dream.photos.attached? %>
-                  <%= cl_image_tag(dream.photos[0].key, crop: :fill, class: 'card-img-top', alt: dream.title) %>
-                <% else %>
-                  <%= image_tag 'dreamdefault.png', class: 'card-img-top', alt: dream.title %>
-                <% end %>
-                <div class="card-body text-center">
-                  <h4 class="card-title"><%= dream.title %></h4>
-                  <p class="card-text">
-                    <strong><%= dream.price_per_night %>€</strong> per night
-                    <br>
-                    4.5 <i class="fa fa-star"></i>
-                  </p>
-                  <p class="text-secondary"> #of bookings <strong><%= dream.bookings.count %></strong></p>
-                  <p class="text-secondary"> total earnings: <strong><%= dream.price_per_night * dream.bookings.count %>€</strong></p>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-      <%# My earnings %>
-      <div class="col-md-4 text-center">
-        <h2 class="mb-4">Statistics</h2>
-        <div class="card text-white bg-primary shadow-lg rounded-lg">
-          <div class="card-body">
-            <h5 class="card-title">Dreams Sold</h5>
-            <p class="card-text display-4 fw-bold" id="reves-vendus">
-              <%= @user.dreams.sum { |dream| dream.bookings.count } %>
-            </p>
-          </div>
-          <div class="card-body bg-light text-dark rounded-bottom">
-            <h5 class="card-title">Total Earnings</h5>
-            <p class="card-text display-4 fw-bold" id="total-earnings">
-              <%= @user.dreams.sum { |dream| dream.bookings.count * dream.price_per_night } %> €
-            </p>
-          </div>
+  <!-- Navbar section -->
+  <div class="d-flex justify-content-between align-items-center bg-gradient rounded-5 m-3 p-3 shadow">
+    <div class="d-flex align-items-center">
+        <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "rounded-circle", alt: "avatar", width: 70  %>
+      </a>
+      <h3 class="ms-3"> <%= @user.nickname %> </h3>
+    </div>
+    <div class="d-flex">
+      <!-- Dreams Sold Card -->
+      <div class="bg-transparent card shadow-sm rounded-lg m-1">
+        <div class="card-body">
+          <h5 class="card-title">Dreams Sold</h5>
+          <p class="card-text fw-bold" id="reves-vendus">
+            <%= @user.dreams.sum { |dream| dream.bookings.count } %>
+          </p>
         </div>
       </div>
+      <!-- Total Earnings Card -->
+      <div class="bg-transparent card shadow-sm rounded-lg m-1">
+        <div class="card-body ">
+          <h5 class="card-title">Total Earnings</h5>
+          <p class="card-text fw-bold" id="total-earnings">
+            <%= @user.dreams.sum { |dream| dream.bookings.count * dream.price_per_night } %> €
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main content section -->
+  <div class="row text-center">
+    <!-- Centered title -->
+    <div class="col-12 mb-4">
+      <h2 class="fw-bold">Dreams created</h2>
+    </div>
+    <!-- Dreams grid -->
+    <div class="col-12 d-flex flex-wrap justify-content-center">
+      <% @dreams.each do |dream| %>
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
+          <%= link_to dream_path(dream), class: "text-decoration-none" do %>
+            <div class="card h-100" data-aos="zoom-in">
+              <% if dream.photos.attached? %>
+                <%= cl_image_tag(dream.photos[0].key, crop: :fill, class: 'card-img-top same-size', alt: dream.title) %>
+              <% else %>
+                <%= image_tag 'dreamdefault.png', class: 'card-img-top same-size', alt: dream.title %>
+              <% end %>
+              <div class="card-body text-center">
+                <h4 class="card-title"><%= dream.title %></h4>
+                <p class="card-text">
+                  <strong><%= dream.price_per_night %>€</strong> per night
+                  <br>
+                  4.5 <i class="fa fa-star"></i>
+                </p>
+                <p class="text-secondary">Number of bookings : <strong><%= dream.bookings.count %></strong></p>
+                <p class="text-secondary">Total earnings : <strong><%= dream.price_per_night * dream.bookings.count %>€</strong></p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
+
+<style>
+  /* Make sure all images have the same size */
+  .same-size {
+    width: 100%;
+    height: 250px; /* Adjust the height to whatever fits your design */
+    object-fit: cover; /* Ensures the image fills the container without distortion */
+  }
+</style>
