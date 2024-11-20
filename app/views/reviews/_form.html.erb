@@ -1,8 +1,10 @@
 <%= simple_form_for([dream, review]) do |f| %>
   <div class="form-group h-15">
     <%= f.input :comment, label: "Comment" %>
+    <%= f.input :rating, label: "Rating" %>
+
   </div>
   <div class="actions">
-    <%= f.submit "Create Booking", class: "btn btn-flat" %>
+    <%= f.submit "Create Review", class: "btn btn-flat" %>
   </div>
 <% end %>

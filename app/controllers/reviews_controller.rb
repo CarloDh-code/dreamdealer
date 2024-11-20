@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
 
   def create
     @review = @dream.reviews.build(review_params)
-    # @review.dream = @dream
+    @review.dream = @dream
     if @review.save!
       redirect_to dream_path(@dream)
     else
