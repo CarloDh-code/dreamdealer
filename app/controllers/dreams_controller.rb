@@ -6,7 +6,9 @@ before_action :set_dream, only: [:show]
   end
 
   def show
+    @dream = Dream.find(params[:id])
     @booking = Booking.new
+    @reviews = @dream.reviews
   end
 
   def new
@@ -42,5 +44,5 @@ before_action :set_dream, only: [:show]
   def dream_params
     params.require(:dream).permit(:title, :description, :price_per_night, :category, :age_limit, :number_of_roles, photos: [])
   end
-  
+
 end

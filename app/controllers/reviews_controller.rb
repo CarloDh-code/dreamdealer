@@ -1,26 +1,24 @@
 class ReviewsController < ApplicationController
-  before_action :set_booking, only: [:new, :create]
+  before_action :set_dream, only: [:new, :create]
 
   def new
     @review = Review.new
   end
 
   def create
-    @review = @booking.reviews.build(review_params)
-    # @booking = Booking.find(params[:booking_id])
-    # @review.booking = @booking
-    if @review.save
-      redirect_to booking_path(@booking)
+    @review = @dream.reviews.build(review_params)
+    @review.dream = @dream
+    if @review.save!
+      redirect_to dream_path(@dream)
     else
       render :new, status: :unprocessable_entity
     end
   end
 
-
   private
 
-  def set_booking
-    @booking = Booking.find(params[:booking_id])
+  def set_dream
+    @dream = Dream.find(params[:dream_id])
   end
 
   def review_params
