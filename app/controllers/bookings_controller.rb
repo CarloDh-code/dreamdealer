@@ -5,6 +5,11 @@ class BookingsController < ApplicationController
   def show
   end
 
+  def new
+    @dream = Dream.find(params[:dream_id]) # Charge le Dream
+    @booking = @dream.bookings.new        # Prépare une nouvelle Booking associée
+  end
+
   def create
     @booking = Booking.new(booking_params)
     @booking.dream = @dream

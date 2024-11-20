@@ -1,5 +1,9 @@
- <%= simple_form_for(dream, booking) do |f| %>
-          <%= f.input :start_date %>
-          <%= f.input :end_date %>
-          <%= f.submit class: "btn btn-flat" %>
-  <% end %>
+<%= simple_form_for([dream, booking]) do |f| %>
+  <div class="form-group">
+    <%= f.input :start_date, label: "Start Date", as: :date %>
+    <%= f.input :end_date, label: "End Date", as: :date %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Create Booking", class: "btn btn-flat" %>
+  </div>
+<% end %>

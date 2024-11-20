@@ -59,5 +59,12 @@
   <div class="div">
     <%= render "formbooking", dream: @dream, booking: @booking  %>
   </div>
+
+  <div class="text-center mt-4 mb-4">
+    <%= link_to "Give a review", new_dream_review_path(@dream), class: "btn btn-primary" %>
+  </div>
   </div>
 </div>
+
+
+<%# <h2>Reviews for this Dream:</h2> %>

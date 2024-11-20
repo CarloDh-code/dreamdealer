@@ -67,12 +67,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_19_154151) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.bigint "booking_id", null: false
+    t.bigint "dream_id", null: false
     t.float "rating"
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["booking_id"], name: "index_reviews_on_booking_id"
+    t.index ["dream_id"], name: "index_reviews_on_dream_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -94,5 +94,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_19_154151) do
   add_foreign_key "bookings", "dreams"
   add_foreign_key "bookings", "users"
   add_foreign_key "dreams", "users"
-  add_foreign_key "reviews", "bookings"
+  add_foreign_key "reviews", "dreams"
 end
