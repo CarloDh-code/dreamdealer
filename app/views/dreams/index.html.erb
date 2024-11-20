@@ -7,9 +7,9 @@
         <%= link_to dream_path(dream), class: "text-decoration-none" do %>
           <div class="card h-100" data-aos="zoom-in">
             <% if dream.photos.attached? %>
-              <%= cl_image_tag(dream.photos[0].key, crop: :fill, class: 'card-img-top', alt: dream.title) %>
+              <%= cl_image_tag(dream.photos[0].key, crop: :fill, class: 'card-img-top same-size', alt: dream.title) %>
             <% else %>
-              <%= image_tag 'dreamdefault.png', class: 'card-img-top', alt: dream.title %>
+              <%= image_tag 'dreamdefault.png', class: 'card-img-top same-size', alt: dream.title %>
             <% end %>
             <div class="card-body text-center">
               <h4 class="card-title"><%= dream.title %></h4>
@@ -26,3 +26,14 @@
     <% end %>
   </div>
 </div>
+
+
+
+<style>
+  /* Make sure all images have the same size */
+  .same-size {
+    width: 100%;
+    height: 250px; /* Adjust the height to whatever fits your design */
+    object-fit: cover; /* Ensures the image fills the container without distortion */
+  }
+</style>
