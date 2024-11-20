@@ -20,7 +20,7 @@ before_action :set_dream, only: [:show]
     if @dream.save
       redirect_to dream_path(@dream)
     else
-      render :new, :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
