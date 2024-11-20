@@ -2,7 +2,7 @@ class Dream < ApplicationRecord
   has_many :bookings
   belongs_to :user
 
-  has_one_attached :photo
+  has_many_attached :photos
 
   validates :title, presence: true, uniqueness: true, length: {minimum: 10, message: "please dream more than 10 caracters"}
   validates :description, presence: true, length: {minimum: 10, message: "please dream more than 10 caracters"}

@@ -6,10 +6,12 @@ before_action :set_dream, only: [:show]
   end
 
   def show
+    @booking = Booking.new
   end
 
   def new
     @dream = Dream.new
+    @categories = Dream::CATEGORIES
   end
 
   def create
@@ -38,7 +40,7 @@ before_action :set_dream, only: [:show]
   end
 
   def dream_params
-    params.require(:dream).permit(:title, :description, :price_per_night, :category, :age_limit, :number_of_roles, :photo)
+    params.require(:dream).permit(:title, :description, :price_per_night, :category, :age_limit, :number_of_roles, photos: [])
   end
-
+  
 end
