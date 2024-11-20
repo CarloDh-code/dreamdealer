@@ -17,7 +17,7 @@ carlos = User.create!(email: "carlo@dream.fr", password: "123456", nickname: "ca
 
 url = "http://tmdb.lewagon.com/movie/top_rated"
 
-10.times do |i|
+3.times do |i|
   movies = JSON.parse(URI.open("#{url}?page=#{i + 1}").read)["results"]
   movies.each do |movie|
     puts "Creating #{movie["title"]}"
