@@ -44,32 +44,55 @@
       <h5 class="text-muted mb-2"><strong>Details of your next dream:</strong></h5>
       <p class="text-muted"><%= @dream.description %></p>
       <p class="mb-1"><strong>Category:</strong> <%= @dream.category %></p>
-      <p class="mb-1"><strong>Price per night:</strong> <%= @dream.price_per_night %>£</p>
+      <p class="mb-1"><strong>Price per night:</strong> <%= @dream.price_per_night %>€</p>
       <p class="mb-1"><strong>Number of roles:</strong> <%= @dream.number_of_roles %></p>
     </div>
 
     <!-- Right Column: Rating -->
     <div class="col-md-2 text-center">
-      <p class="display-6 fw-bold">4/5</p>
+      <% @dream.average_rating.round.times do %>
+        <i class="fas fa-star star-yellow"></i>
+      <% end %>
     </div>
 
   </div> <!-- End of row -->
 
   <!-- Booking Form -->
+  <% if current_user != @dream.user %>
   <div class="d-flex justify-content-center align-items-center m-1 p-3">
     <div class="m-2 bg-light text-dark p-3 rounded-4 shadow">
       <%= render "formbooking", dream: @dream, booking: @booking %>
     </div>
   </div>
 
-  <!-- Back to Dreams Button -->
   <div class="text-center m-4">
     <%= link_to "Back to the Dreams", dreams_path, class: "btn btn-primary" %>
   </div>
+  <% end %>
+
+  <div class="row mt-5">
+    <div class="col-12 col-sm-6">
+      <% if @dream.reviews.empty? %>
+        <small><em class="text-muted">Be the first one to review this dream</em></small>
+      <% end %>
+      <h3><%= @dream.reviews.count%> reviews for this dream</h3>
+      <% @dream.reviews.each do |review| %>
+        <div>
+          <% review.rating.times do %>
+            <i class="fas fa-star star-yellow"></i>
+          <% end %>
+          <small><em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at) %> ago</em></small>
+          <p class="mb-0"><%= review.comment %></p>
+        </div>
+        <hr>
+      <% end %>
+    </div>
 
     <div class="text-center m-4">
-    <%= link_to "Give a review", new_dream_review_path(@dream), class: "btn btn-primary" %>
-  </div>
+      <%= link_to "Give a review", new_dream_review_path(@dream), class: "btn btn-primary" %>
+    </div>
+  <!-- Back to Dreams Button -->
+
 </div>
 
 

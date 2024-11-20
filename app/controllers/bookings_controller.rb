@@ -15,7 +15,7 @@ class BookingsController < ApplicationController
     @booking.dream = @dream
     @booking.user = current_user
     if @booking.save
-      redirect_to dream_path(@dream)
+      redirect_to bookingsdashboard_path
     else
       render :show, status: :unprocessable_entity
     end
