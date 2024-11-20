@@ -27,31 +27,32 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <p> <%=@dreams.count%> dreams created, keep dreaming!</p>
-      <%# My dreams (created) %>
-      <div class="col-md-8 text-center">
-        <h2>Dreams created</h2>
-        <% @dreams.each do |dream| %>
-          <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
-            <%= link_to dream_path(dream), class: "text-decoration-none" do %>
-              <div class="card h-100" data-aos="zoom-in">
-                <% if dream.photos.attached? %>
-                  <%= cl_image_tag(dream.photos[0].key, crop: :fill, class: 'card-img-top', alt: dream.title) %>
-                <% else %>
-                  <%= image_tag 'dreamdefault.png', class: 'card-img-top', alt: dream.title %>
-                <% end %>
-                <div class="card-body text-center">
-                  <h4 class="card-title"><%= dream.title %></h4>
-                  <p class="card-text">
-                    <strong><%= dream.price_per_night %>€</strong> per night
-                    <br>
-                    4.5 <i class="fa fa-star"></i>
-                  </p>
-                  <p class="text-secondary"> #of bookings <strong><%= dream.bookings.count %></strong></p>
-                  <p class="text-secondary"> total earnings: <strong><%= dream.bookings.sum(&:total_price) %>€</strong></p>
-                  <%# <p class="text-secondary"> total earnings: <strong><%= dream.bookings.sum { |booking| booking.total_price } €</strong></p> %>
-                </div>
+  <!-- Main content section -->
+  <div class="row text-center">
+    <!-- Centered title -->
+    <div class="col-12 mb-4">
+      <h2 class="fw-bold">Dreams created</h2>
+    </div>
+    <!-- Dreams grid -->
+    <div class="col-12 d-flex flex-wrap justify-content-center">
+      <% @dreams.each do |dream| %>
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
+          <%= link_to dream_path(dream), class: "text-decoration-none" do %>
+            <div class="card h-100" data-aos="zoom-in">
+              <% if dream.photos.attached? %>
+                <%= cl_image_tag(dream.photos[0].key, crop: :fill, class: 'card-img-top same-size', alt: dream.title) %>
+              <% else %>
+                <%= image_tag 'dreamdefault.png', class: 'card-img-top same-size', alt: dream.title %>
+              <% end %>
+              <div class="card-body text-center">
+                <h4 class="card-title"><%= dream.title %></h4>
+                <p class="card-text">
+                  <strong><%= dream.price_per_night %>€</strong> per night
+                  <br>
+                  4.5 <i class="fa fa-star"></i>
+                </p>
+                <p class="text-secondary">Number of bookings : <strong><%= dream.bookings.count %></strong></p>
+                <p class="text-secondary">Total earnings : <strong><%= dream.price_per_night * dream.bookings.count %>€</strong></p>
               </div>
             </div>
           <% end %>
@@ -60,7 +61,6 @@
     </div>
   </div>
 </div>
-
 <style>
   /* Make sure all images have the same size */
   .same-size {
@@ -69,3 +69,9 @@
     object-fit: cover; /* Ensures the image fills the container without distortion */
   }
 </style>
+
+
+
+
+
+
