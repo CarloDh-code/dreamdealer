@@ -1,10 +1,12 @@
 <%= simple_form_for([dream, review]) do |f| %>
   <div class="form-group h-15">
     <%= f.input :comment, label: "Comment" %>
-    <%= f.input :rating, label: "Rating" %>
-
+    <%= f.input :rating,
+      collection: @ratings,
+      input_html: { class: 'form-control', data: { controller: "tom-select" } },
+      label: 'Give your rating' %>
   </div>
   <div class="actions">
-    <%= f.submit "Create Review", class: "btn btn-flat" %>
+    <%= f.submit "Create Review", class: "btn btn-primary" %>
   </div>
 <% end %>

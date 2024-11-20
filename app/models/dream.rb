@@ -1,6 +1,6 @@
 class Dream < ApplicationRecord
   has_many :bookings
-  has_many :reviews, through: :bookings
+  has_many :reviews
   belongs_to :user
 
   has_many_attached :photos
@@ -13,4 +13,11 @@ class Dream < ApplicationRecord
   validates :age_limit, presence: true
   ROLES = (1..10).to_a
   validates :number_of_roles, inclusion: {in: ROLES}
+
+
+  def average_rating
+    return 0 if self.reviews.empty?
+    ratings = self.reviews.pluck(:rating)
+    ratings.sum.to_f / ratings.size
+  end
 end

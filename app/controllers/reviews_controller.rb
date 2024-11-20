@@ -3,10 +3,11 @@ class ReviewsController < ApplicationController
 
   def new
     @review = Review.new
+    @ratings = Review::RATINGS
   end
 
   def create
-    @review = @dream.reviews.build(review_params)
+    @review = Review.new(review_params)
     @review.dream = @dream
     if @review.save!
       redirect_to dream_path(@dream)

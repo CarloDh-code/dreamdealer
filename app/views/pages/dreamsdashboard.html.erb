@@ -52,7 +52,7 @@
                   4.5 <i class="fa fa-star"></i>
                 </p>
                 <p class="text-secondary">Number of bookings : <strong><%= dream.bookings.count %></strong></p>
-                <p class="text-secondary">Total earnings : <strong><%= dream.price_per_night * dream.bookings.count %>€</strong></p>
+                <p class="text-secondary">Total earnings : <strong><%= @dream.bookings.sum(&:total_price) %>€</strong></p>
               </div>
             </div>
           <% end %>
@@ -69,9 +69,3 @@
     object-fit: cover; /* Ensures the image fills the container without distortion */
   }
 </style>
-
-
-
-
-
-
