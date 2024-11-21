@@ -6,6 +6,61 @@ Booking.destroy_all
 Dream.destroy_all
 User.destroy_all
 
+DESCS = [ " You plunge into a city ablaze, forced to leap across rooftops and dodge explosions to uncover a hidden treasure. The streets are filled with chaos as the fire spreads,
+  and every step you take brings you closer to danger. Time is running out,
+  and only your courage can guide you to the treasure that holds the key to salvation ",
+
+  "Fight in a futuristic arena, wielding an energy sword against robotic opponents. The battle intensifies as the arena shifts,
+  creating new challenges and hazards. Every strike brings you closer to victory,
+  but beware — the machines are learning from your every move, and the stakes grow higher with each passing moment.",
+
+  "An intense chase in flying vehicles through a sprawling metropolis suspended in the clouds.
+  The city twists and turns as you navigate through towering skyscrapers, dodging obstacles and enemies. With every near miss,
+  the stakes rise, and the pressure to escape grows as the skyline shatters around you",
+
+  "Infiltrate a hidden base deep within a dense jungle, where every step could trigger a deadly trap.
+  The sounds of wildlife echo through the trees as you carefully navigate through the undergrowth. Danger lurks around every corner,
+  and you must rely on your instincts to survive and uncover the secrets hidden in the heart of the jungle.",
+
+  "You step onto the stage of a prestigious award ceremony, hailed for your exceptional talent.
+  The crowd erupts in applause as the spotlight shines on you, and the weight of the moment fills the air. As you stand there,
+  the realization sinks in that this is the culmination of years of hard work and dedication to your craft.",
+
+  "Climb the steps of a symbolic tower, where each floor represents a major success in your life.
+  As you ascend, memories of past victories flash before your eyes, fueling your determination to reach the top.
+  With every floor, you gain confidence, knowing that the pinnacle of your achievements is just within reach.",
+
+  "A lavish evening celebrates you for accomplishing a groundbreaking financial feat.
+  The world’s most influential figures gather to honor your success, and the spotlight is on you.
+  As the applause echoes, you reflect on the journey that brought you here,
+  realizing that this moment marks the beginning of even greater achievements",
+
+  "You inaugurate a global foundation in your honor, your portrait etched in history.
+  The world watches as you make a lasting impact, laying the groundwork for future generations.
+  As you stand at the podium, you reflect on your journey, knowing that this legacy will forever change the world.",
+
+  "Embark on a journey across the cosmos, navigating through star clusters and cosmic dust, with an ancient artifact that could change the fate of galaxies.
+  As you travel, you'll encounter mysterious alien civilizations that hold the key to unlocking the artifact's true power.
+  Every decision could alter the destiny of countless worlds, and time itself may be your greatest enemy.",
+
+  "Dive into the deepest oceans where ancient civilizations lie beneath the waves.
+  Explore sunken cities and decipher cryptic messages from the past, all while avoiding the lurking dangers of the abyss.
+  Beneath the water's surface, strange creatures that defy human understanding roam freely, guarding treasures long forgotten.
+  But be warned: the deeper you go, the more you risk losing yourself to the haunting whispers of the ocean's depths.",
+
+  "Walk through a timeless forest where each step echoes through dimensions. Uncover the secrets of an eternal world, where the past and future collide and reality bends around you.
+  As you journey deeper into the forest, you’ll encounter spectral beings who have transcended time and space, offering cryptic wisdom or dark warnings.
+  The further you explore, the more you realize that this forest exists outside of time, where your past and future are waiting to meet.",
+
+  "Wander through a futuristic city where towering skyscrapers shine with brilliant lights, but in the hidden alleys,
+  darkness and mystery lurk. Choose whether to uncover its secrets or remain a mere observer.
+  The city is filled with both technological marvels and hidden dangers, where underground movements fight for control of the city's future.
+  As you delve into the shadows, you’ll face choices that could either bring enlightenment or plunge the city into chaos."
+ ]
+
+TITLES = ["Inferno's Run", "Blade Clash", "Skyfall Pursuit", "Jungle Ambush", "The Golden Stage", "Tower of Triumph",
+  "Millionaire's Gala", "Legacy Creator", "Nebula Voyager", "Whispers in the Abyss", "Echoes of Eternity", "City of Light and Shadows"]
+
 antou = User.create!(email: "antoine@dream.fr", password: "123456", nickname: "antou")
 
 mik = User.create!(email: "mik@dream.fr", password: "123456", nickname: "mikmik")
@@ -15,8 +70,14 @@ taib = User.create!(email: "taib@dream.fr", password: "123456", nickname: "taibi
 carlos = User.create!(email: "carlo@dream.fr", password: "123456", nickname: "carlos")
 
 
-url = "http://tmdb.lewagon.com/movie/top_rated"
+# url = "http://tmdb.lewagon.com/movie/top_rated"
 
+<<<<<<< HEAD
+8.times do |i|
+    dream = Dream.create!(
+      title: TITLES[i],
+      description: DESCS[i] ,
+=======
 2.times do |i|
   movies = JSON.parse(URI.open("#{url}?page=#{i + 1}").read)["results"]
   movies.each do |movie|
@@ -24,18 +85,69 @@ url = "http://tmdb.lewagon.com/movie/top_rated"
     base_poster_url = "https://image.tmdb.org/t/p/original"
     dream = Dream.create!(title: movie["title"],
       description: movie["overview"] ,
+>>>>>>> master
       category: ["action", "success", "lust", "dreamy", "adventure", "travel", "fantasy", "time traveler"].sample,
       price_per_night: rand(25..100),
       age_limit: rand(12..20) ,
       number_of_roles: rand(1..4) ,
       user: [antou, taib, carlos, mik].sample
     )
-    file_photo = URI.parse("#{base_poster_url}#{movie["backdrop_path"]}").open
-    dream.photos.attach(io: file_photo, filename: "dream#{i + 1}.png", content_type: "image/png")
+
+    # if dream.status
+    #   rand(1..3).times do
+    #     start_date = Faker::Date.between(from: Date.today, to: Date.today + 30)
+    #     end_date = start_date + rand(1..7)
+    #     Booking.create!(
+    #       start_date: start_date,
+    #       end_date: end_date,
+    #       dream: dream,
+    #       user: [antou, taib, carlos, mik].sample
+    #     )
+    #   end
+    # end
+
+    image_path = "/Users/admin/code/dreamdealer/app/assets/dreampics/dream##{i+1}.png"  # Vous devez remplacer cela par un chemin valide
+    file_photo = File.open(image_path)
+
+    # Associez l'image à votre objet `dream`
+    dream.photos.attach(io: file_photo, filename: "dream##{i+1}.png", content_type: "image/png")
+
+    puts "Created Dream: #{dream.title}"
   end
-end
 puts "finished"
 
+4.times do |j|
+  dream = Dream.create!(
+    title: TITLES[j+8],
+    description: DESCS[j+8] ,
+    category: ["action", "success", "lust", "dreamy", "adventure", "travel", "fantasy", "time traveler"].sample,
+    price_per_night: rand(25..100),
+    age_limit: rand(12..20) ,
+    number_of_roles: rand(1..4) ,
+    user: [antou, taib, carlos, mik].sample
+  )
+
+  # if dream.status
+  #   rand(1..3).times do
+  #     start_date = Faker::Date.between(from: Date.today, to: Date.today + 30)
+  #     end_date = start_date + rand(1..7)
+  #     Booking.create!(
+  #       start_date: start_date,
+  #       end_date: end_date,
+  #       dream: dream,
+  #       user: [antou, taib, carlos, mik].sample
+  #     )
+  #   end
+  # end
+
+  image_path = "/Users/admin/code/dreamdealer/app/assets/dreampics/dream##{j+9}.jpg"  # Vous devez remplacer cela par un chemin valide
+  file_photo = File.open(image_path)
+
+  # Associez l'image à votre objet `dream`
+  dream.photos.attach(io: file_photo, filename: "dream##{j+9}.jpg", content_type: "image/jpg")
+
+  puts "Created Dream: #{dream.title}"
+end
 
 # dream_2 = Dream.create!(title: "A dream full of love"  ,
 #   description: "It is a lovely night in my mind" ,
