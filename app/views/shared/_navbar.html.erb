@@ -1,27 +1,28 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon sticky-top">
   <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
-
+    <%= link_to dreams_path, class: "navbar-brand d-flex align-items-center" do %>
+      <%= image_tag "logo_dreamdealer.png", alt: "Logo", class: "m-2", height: "40" %>
+      <span class="fw-bold text-primary">DreamDealer</span>
     <% end %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <%= link_to "Create your dream", new_dream_path, class: "nav-link text-decoration-none" %>
-          </li>
-            <li class="nav-item">
-            <%= link_to "See my dashboard", dashboard_path(@user), class: "nav-link text-decoration-none" %>
-          </li>
-          <li class="nav-item dropdown">
-          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <ul class="navbar-nav m-3">
+        <li class="nav-item">
+          <%= link_to "Create your dream", new_dream_path, class: "btn btn-secondary rounded nav-link text-decoration-none" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "See my dashboard", dashboard_path(@user), class: "btn btn-secondary rounded nav-link text-decoration-none" %>
+        </li>
+        <li class="nav-item dropdown">
+          <a href="#" class="avatar m-3" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= image_tag "https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/avatar-512.png", class: "avatar", alt: "dropdown menu" %>
           </a>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-            </div>
-          </li>
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
+          </div>
+        </li>
       </ul>
     </div>
   </div>

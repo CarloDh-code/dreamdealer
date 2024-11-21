@@ -3,6 +3,12 @@
   opacity: 0;
 }
 
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* S'assure que le contenu occupe tout l'espace */
+}
+
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -45,17 +51,16 @@
   background-position: center;
 }
 
-.mainbackground {
-  background-image: asset-url("background2.png");
-  background-repeat: no-repeat;
-  // height: 100vh;
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background-position: center;
-  background-size: cover;
+// .mainbackground {
+//   background-image: asset-url("background2.png");
+//   background-repeat: no-repeat;
+//   // height: 100vh
+//   inset: 0;
+//   z-index: -1;
+//   background-position: center;
+//   background-size: cover;
 
-}
+// }
 
 .maincontainer {
   // min-height: calc(100vh - #{$navbar-height} - #{$footer-height});
@@ -68,4 +73,8 @@
   text-align: center;
   color: white;
   padding-top: 20%;
+}
+
+footer {
+  margin-top: auto;
 }

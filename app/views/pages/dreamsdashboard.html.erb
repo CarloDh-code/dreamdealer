@@ -8,7 +8,7 @@
     </div>
     <div class="d-flex">
       <!-- Dreams Sold Card -->
-      <div class="bg-transparent card shadow-sm rounded-lg m-1">
+      <div class="bg-transparent card_dash shadow-sm rounded-5 p-3 m-1">
         <div class="card_dash-body">
           <h5 class="card_dash-title">Dreams Sold</h5>
           <p class="card_dash-text fw-bold" id="reves-vendus">
@@ -21,7 +21,7 @@
         </div>
       </div>
       <!-- Total Earnings Card -->
-      <div class="bg-transparent card shadow-sm rounded-lg m-1">
+      <div class="bg-transparent card_dash shadow-sm rounded-5 p-3 m-1">
         <div class="card_dash-body ">
           <h5 class="card_dash-title">Total Earnings</h5>
           <p class="card_dash-text fw-bold" id="total-earnings">
@@ -45,11 +45,11 @@
     <!-- Dreams grid -->
     <div class="col-12 d-flex flex-wrap justify-content-center">
       <% @dreams.each do |dream| %>
-        <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
           <%= link_to dream_path(dream), class: "text-decoration-none" do %>
-            <div class="card h-100" data-aos="zoom-in">
+            <div class="card h-100 rounded-5 m-2" data-aos="zoom-in">
               <% if dream.photos.attached? %>
-                <%= cl_image_tag(dream.photos[0].key, crop: :fill, class: 'card-img-top same-size', alt: dream.title) %>
+                <%= cl_image_tag(dream.photos[0].key, crop: :fill, class: 'card-img-top same-size rounded-top-5', alt: dream.title) %>
               <% else %>
                 <%= image_tag 'dreamdefault.png', class: 'card-img-top same-size', alt: dream.title %>
               <% end %>
