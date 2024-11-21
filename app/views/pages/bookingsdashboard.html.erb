@@ -10,10 +10,25 @@
       <!-- Dreams Sold Card -->
       <div class="bg-transparent card_dash shadow-sm rounded p-2 m-1">
         <div class="card_dash-body">
-          <h5 class="card_dash-title text-center m-1">My bookings</h5>
+          <h5 class="card_dash-title text-center m-1">Dreams made</h5>
           <p class="card_dash-text fw-bold text-center m-1" id="reves-vendus">
-            <%= @user.bookings.count %>
-
+          <%= @user.bookings.where(status: true).where('end_date <= ?', Date.today).count %>
+          </p>
+        </div>
+      </div>
+      <div class="bg-transparent card_dash shadow-sm rounded p-2 m-1">
+        <div class="card_dash-body">
+          <h5 class="card_dash-title text-center m-1">Dreams planned</h5>
+          <p class="card_dash-text fw-bold text-center m-1" id="reves-vendus">
+          <%= @user.bookings.where(status: true).where('start_date >= ?', Date.today).count %>
+          </p>
+        </div>
+      </div>
+      <div class="bg-transparent card_dash shadow-sm rounded p-2 m-1">
+        <div class="card_dash-body">
+          <h5 class="card_dash-title text-center m-1">Bookings request pendings</h5>
+          <p class="card_dash-text fw-bold text-center m-1" id="reves-vendus">
+            <%= @user.bookings.where(status: nil).where('start_date >= ?', Date.today).count %>
           </p>
         </div>
       </div>
@@ -47,12 +62,10 @@
                 <%# <% if dream.boo %>
                 <p class="text-secondary"> First night : <strong><%= booking.start_date %></strong></p>
                 <p class="text-secondary"> Price per night: <strong><%= booking.dream.price_per_night %>€</strong></p>
-                <% if booking.status == nil %>
+                <% if booking.status = false %>
                 <p class="text-secondary"> Booking request sent</p>
-                <% elsif booking.status == true %>
-                <p class="text-secondary"> Booking accepted !</p>
                 <% else %>
-                <p class="text-secondary"> Booking declined !</p>
+                <p class="text-secondary"> Booking accepted !</p>
                 <% end %>
               </div>
             </div>

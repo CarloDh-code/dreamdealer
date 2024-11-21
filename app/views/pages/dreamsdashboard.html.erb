@@ -9,10 +9,23 @@
     <div class="d-flex">
       <!-- Dreams Sold Card -->
       <div class="bg-transparent card_dash shadow-sm rounded-5 p-3 m-1">
+        <div class="card_dash-body ">
+          <h5 class="card_dash-title"> <strong>Booking requests pending</strong></h5>
+          <p class="card_dash-text fw-bold" id="total-earnings">
+           <% total = @user.dreams.sum { |dream| dream.bookings.where(status: nil).count } %>
+            <% if total.zero? %>
+              <p style="font-weight: 200; font-size: 13px;"> <em>No request pending</em></p>
+            <% else %>
+              <p style="font-weight: 300; font-size: 22px;"> <%= total %> € </p>
+            <% end %>
+          </p>
+        </div>
+      </div>
+      <div class="bg-transparent card_dash shadow-sm rounded-5 p-3 m-1">
         <div class="card_dash-body">
           <h5 class="card_dash-title"> <strong>Dreams Sold</strong></h5>
           <p class="card_dash-text fw-bold" id="reves-vendus">
-            <% total_dream = @user.dreams.sum { |dream| dream.bookings.count } %>
+            <% total_dream = @user.dreams.sum { |dream| dream.bookings.where(status: true).count } %>
             <% if total_dream.zero? %>
               <p style="font-weight: 200; font-size: 13px;"> <em>No dreams sold yet</em></p>
             <% else %>
@@ -25,7 +38,7 @@
         <div class="card_dash-body ">
           <h5 class="card_dash-title"> <strong>Total Earnings</strong></h5>
           <p class="card_dash-text fw-bold" id="total-earnings">
-            <% total = @user.dreams.sum { |dream| dream.bookings.sum(&:total_price)} %>
+            <% total = @user.dreams.sum { |dream| dream.bookings.where(status: true).sum(&:total_price)} %>
             <% if total.zero? %>
               <p style="font-weight: 200; font-size: 13px;"> <em>No dreams sold yet</em></p>
             <% else %>

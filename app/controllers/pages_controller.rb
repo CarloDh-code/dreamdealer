@@ -5,7 +5,8 @@ class PagesController < ApplicationController
   def dashboard
     @user = current_user
     @bookings = @user.bookings
-    @dreams = @user.dreams
+    @dreams = Dream.where(user: current_user)
+    @bookings_received = Booking.where(dream_id: @dreams.pluck(:id))
   end
 
   def dreamsdashboard
