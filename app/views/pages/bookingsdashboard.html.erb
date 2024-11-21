@@ -47,10 +47,12 @@
                 <%# <% if dream.boo %>
                 <p class="text-secondary"> First night : <strong><%= booking.start_date %></strong></p>
                 <p class="text-secondary"> Price per night: <strong><%= booking.dream.price_per_night %>€</strong></p>
-                <% if booking.status = false %>
+                <% if booking.status == nil %>
                 <p class="text-secondary"> Booking request sent</p>
-                <% else %>
+                <% elsif booking.status == true %>
                 <p class="text-secondary"> Booking accepted !</p>
+                <% else %>
+                <p class="text-secondary"> Booking declined !</p>
                 <% end %>
               </div>
             </div>
