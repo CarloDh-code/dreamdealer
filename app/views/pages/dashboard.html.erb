@@ -10,17 +10,7 @@
       <h3 class="ms-3 fw-bold"> <%= @user.nickname %> </h3>
     </div>
     <div class="d-flex">
-      <!-- Dreams Sold Card -->
-      <div class="username2 card_dash shadow-sm rounded-5 m-1 p-4">
-        <div class="card_dash-body m-3 ">
-          <p class="title_dash card_dash-title">DREAMS SOLD</p>
-          <p class="card_dash-text fw-bold display-5" id="reves-vendus">
-            <%= @user.dreams.sum { |dream| dream.bookings.count } %>
-          </p>
-        </div>
-      </div>
-      <!-- Total Earnings Card -->
-      <div class="username2 card_dash shadow-sm rounded-5 m-1 p-4">
+       <div class="username2 card_dash shadow-sm rounded-5 m-1 p-4">
         <div class="card_dash-body m-3 ">
           <p class="title_dash card_dash-title">TOTAL EARNINGS</p>
           <p class="card_dash-text fw-bold display-5" id="total-earnings">
@@ -28,29 +18,37 @@
           </p>
         </div>
       </div>
+      <div class="username2 card_dash shadow-sm rounded-5 m-1 p-4">
+        <div class="card_dash-body m-3 ">
+          <p class="title_dash card_dash-title">DREAMS SOLD</p>
+          <p class="card_dash-text fw-bold display-5" id="reves-vendus">
+            <%= @user.dreams.sum { |dream| dream.bookings.where(status: true ).count } %>
+          </p>
+        </div>
+      </div>
+      <div class="username2 card_dash shadow-sm rounded-5 m-1 p-4">
+        <%= link_to dreamsdashboard_path, class: 'card_dash-body m-3', style: 'display: block; text-decoration: none; color: inherit;' do %>
+          <p class="title_dash card_dash-title">BOOKING REQUEST PENDING</p>
+          <p class="card_dash-text fw-bold display-5" id="reves-vendus">
+        <%= @bookings_received.where(status: nil).count %>
+      </p>
+      <% end %>
+      </div>
+      <%= link_to bookingsdashboard_path, class: 'username2 card_dash shadow-sm rounded-5 m-1 p-4', style: 'text-decoration: none; color: inherit;' do %>
+        <div class="card_dash-body m-3">
+          <p class="title_dash card_dash-title">DREAMS BOOKED</p>
+          <p class="card_dash-text fw-bold display-5" id="reves-vendus">
+      <%= @user.bookings.where(status: true).count %>
+      </p>
+      </div>
+      <% end %>
     </div>
   </div>
 
 
     <div class="card-container row justify-content-center mb-4">
-      <div class="col-md-3 mb-3">
-        <div class="card shadow-sm rounded-5 bg-transparent">
-          <div class="card-body">
-            <%= link_to 'Dreams Created', dreamsdashboard_path, class: 'btn fw-bold' %>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 mb-3">
-        <div class="card shadow-sm rounded-5 bg-transparent">
-          <div class="card-body">
-            <%= link_to 'My Bookings', bookingsdashboard_path, class: 'btn fw-bold' %>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="justify-content-center">
       <%= link_to 'Discover our Dreams', dreams_path, class: 'btn btn-outline-dark rounded-5' %>
     </div>
   </div>
 </div>
-
