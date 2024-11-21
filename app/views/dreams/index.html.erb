@@ -16,7 +16,11 @@
               <p class="card-text">
                 <strong><%= dream.price_per_night %>€</strong> per night
                 <br>
-                4.5 <i class="fa fa-star"></i>
+                <% if dream.reviews.empty? %>
+                  3.0 <i class="fa fa-star"></i>
+                <% else %>
+                <%= dream.average_rating %> <i class="fa fa-star"></i>
+                <% end %>
               </p>
               <p class="text-secondary">Hosted by: <strong><%= dream.user.nickname %></strong></p>
             </div>
