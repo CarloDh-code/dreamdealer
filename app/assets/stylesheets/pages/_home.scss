@@ -48,7 +48,7 @@
 .mainbackground {
   background-image: asset-url("background2.png");
   background-repeat: no-repeat;
-  height: 100vh;
+  // height: 100vh;
   position: fixed;
   inset: 0;
   z-index: -1;
@@ -58,5 +58,14 @@
 }
 
 .maincontainer {
-  min-height: calc(100vh - #{$navbar-height} - #{$footer-height});
+  // min-height: calc(100vh - #{$navbar-height} - #{$footer-height});
+}
+
+
+.homepage-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: white;
+  padding-top: 20%;
 }
