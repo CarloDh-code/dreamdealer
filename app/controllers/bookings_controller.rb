@@ -17,7 +17,8 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to bookingsdashboard_path
     else
-      render :show, status: :unprocessable_entity
+      flash.now[:alert] = "Erreur lors de la création de la réservation."
+
     end
   end
 
