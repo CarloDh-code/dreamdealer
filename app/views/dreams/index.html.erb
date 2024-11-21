@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8 my-3">
-      <%= form_with url: dreams_path, method: :get, class: "input-group shadow rounded" do %>
+      <%= form_with url: dreams_path, method: :get, class: "input-group shadow rounded mb-5" do %>
         <%= text_field_tag :query,
               params[:query],
               class: "form-control form-control-lg",
@@ -20,7 +20,7 @@
     <% @dreams.each do |dream| %>
       <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
         <%= link_to dream_path(dream), class: "text-decoration-none" do %>
-          <div class="card rounded-5" data-aos="zoom-in">
+          <div class="card h-100 rounded-5">
             <% if dream.photos.attached? %>
               <%= cl_image_tag(dream.photos[0].key, crop: :fill, class: 'card-img-top same-size rounded-top-5', alt: dream.title) %>
             <% else %>
@@ -31,6 +31,7 @@
               <p class="card-text">
                 <strong><%= dream.price_per_night %>€</strong> per night
                 <br>
+                
                 <% if dream.reviews.empty? %>
                   3.0 <i class="fa fa-star"></i>
                 <% else %>
