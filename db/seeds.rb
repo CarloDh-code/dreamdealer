@@ -72,26 +72,17 @@ carlos = User.create!(email: "carlo@dream.fr", password: "123456", nickname: "ca
 
 # url = "http://tmdb.lewagon.com/movie/top_rated"
 
-<<<<<<< HEAD
+
 8.times do |i|
-    dream = Dream.create!(
-      title: TITLES[i],
-      description: DESCS[i] ,
-=======
-2.times do |i|
-  movies = JSON.parse(URI.open("#{url}?page=#{i + 1}").read)["results"]
-  movies.each do |movie|
-    puts "Creating #{movie["title"]}"
-    base_poster_url = "https://image.tmdb.org/t/p/original"
-    dream = Dream.create!(title: movie["title"],
-      description: movie["overview"] ,
->>>>>>> master
-      category: ["action", "success", "lust", "dreamy", "adventure", "travel", "fantasy", "time traveler"].sample,
-      price_per_night: rand(25..100),
-      age_limit: rand(12..20) ,
-      number_of_roles: rand(1..4) ,
-      user: [antou, taib, carlos, mik].sample
-    )
+      dream = Dream.create!(
+        title: TITLES[i],
+        description: DESCS[i] ,
+        category: ["action", "success", "lust", "dreamy", "adventure", "travel", "fantasy", "time traveler"].sample,
+        price_per_night: rand(25..100),
+        age_limit: rand(12..20) ,
+        number_of_roles: rand(1..4) ,
+        user: [antou, taib, carlos, mik].sample
+      )
 
     # if dream.status
     #   rand(1..3).times do
