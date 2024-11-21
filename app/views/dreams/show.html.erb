@@ -6,7 +6,8 @@
       <% if @dream.photos.empty? %>
         <%= image_tag 'dreamdefault.png', class: 'card-img-top', alt: @dream.title %>
       <% else %>
-        <div id="carouselExampleIndicators-<%= @dream.id %>" class="carousel slide" data-bs-ride="carousel">
+        <div id="carouselExampleIndicators-<%= @dream.id %>" class="carousel slide" data-bs-ride="carousel"
+     data-bs-interval="3000">
           <div class="carousel-indicators">
             <% @dream.photos.each_with_index do |photo, index| %>
               <li data-bs-target="#carouselExampleIndicators-<%= @dream.id %>"

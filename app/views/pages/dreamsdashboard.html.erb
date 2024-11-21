@@ -27,9 +27,9 @@
           <p class="card_dash-text fw-bold" id="reves-vendus">
             <% total_dream = @user.dreams.sum { |dream| dream.bookings.where(status: true).count } %>
             <% if total_dream.zero? %>
-              <p style="font-weight: 200; font-size: 13px;"> <em>No dreams sold yet</em></p>
+              <p class="text-center fw-bold"> <em>No dreams sold yet</em></p>
             <% else %>
-              <p style="font-weight: 300; font-size: 22px;">  <%= total_dream %> </p>
+              <p class="text-center fw-bold">  <%= total_dream %> </p>
             <% end %>
         </div>
       </div>
@@ -40,9 +40,9 @@
           <p class="card_dash-text fw-bold" id="total-earnings">
             <% total = @user.dreams.sum { |dream| dream.bookings.where(status: true).sum(&:total_price)} %>
             <% if total.zero? %>
-              <p style="font-weight: 200; font-size: 13px;"> <em>No dreams sold yet</em></p>
+              <p class="text-center"> <em>No dreams sold yet</em></p>
             <% else %>
-              <p style="font-weight: 300; font-size: 22px;"> <%= total %> € </p>
+              <p class="text-center fw-bold"> <%= total %> € </p>
             <% end %>
           </p>
         </div>
@@ -62,11 +62,11 @@
       <% @bookings.each do |booking| %>
         <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
           <%= link_to dream_path(booking.dream), class: "text-decoration-none" do %>
-            <div class="card h-100" data-aos="zoom-in">
+            <div class="card h-100 rounded-5 m-4" data-aos="zoom-in">
               <% if booking.dream.photos.attached? %>
-                <%= cl_image_tag(booking.dream.photos[0].key, crop: :fill, class: 'card-img-top same-size', alt: booking.dream.title) %>
+                <%= cl_image_tag(booking.dream.photos[0].key, crop: :fill, class: 'card-img-top same-size rounded-top-5', alt: booking.dream.title) %>
               <% else %>
-                <%= image_tag 'dreamdefault.png', class: 'card-img-top same-size', alt: booking.dream.title %>
+                <%= image_tag 'dreamdefault.png', class: 'card-img-top same-size rounded-top-5', alt: booking.dream.title %>
               <% end %>
               <div class="card-body text-center">
                 <h4 class="card-title"><%= booking.dream.title %></h4>
@@ -90,6 +90,7 @@
                 <%= link_to 'Decline', decline_path(booking), class: 'btn btn-danger', data: { turbo_method: "PATCH" }  %>
                 <% end %>
                 </div>
+
               </div>
             </div>
           <% end %>
@@ -97,6 +98,9 @@
       <% end %>
     </div>
 
+      <div>
+     <hr>
+      </div>
 
     <div class="col-12 mb-4">
       <h2 class="fw-bold">Dreams created</h2>
