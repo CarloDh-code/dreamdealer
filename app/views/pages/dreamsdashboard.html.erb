@@ -10,26 +10,26 @@
       <!-- Dreams Sold Card -->
       <div class="bg-transparent card_dash shadow-sm rounded-5 p-3 m-1">
         <div class="card_dash-body">
-          <h5 class="card_dash-title">Dreams Sold</h5>
+          <h5 class="card_dash-title"> <strong>Dreams Sold</strong></h5>
           <p class="card_dash-text fw-bold" id="reves-vendus">
             <% total_dream = @user.dreams.sum { |dream| dream.bookings.count } %>
             <% if total_dream.zero? %>
               <p style="font-weight: 200; font-size: 13px;"> <em>No dreams sold yet</em></p>
             <% else %>
-              <p style="font-weight: 200; font-size: 13px;">  <%= total_dream %> </p>
+              <p style="font-weight: 300; font-size: 22px;">  <%= total_dream %> </p>
             <% end %>
         </div>
       </div>
       <!-- Total Earnings Card -->
       <div class="bg-transparent card_dash shadow-sm rounded-5 p-3 m-1">
         <div class="card_dash-body ">
-          <h5 class="card_dash-title">Total Earnings</h5>
+          <h5 class="card_dash-title"> <strong>Total Earnings</strong></h5>
           <p class="card_dash-text fw-bold" id="total-earnings">
             <% total = @user.dreams.sum { |dream| dream.bookings.sum(&:total_price)} %>
             <% if total.zero? %>
               <p style="font-weight: 200; font-size: 13px;"> <em>No dreams sold yet</em></p>
             <% else %>
-              <p style="font-weight: 200; font-size: 13px;"> <%= total %> € </p>
+              <p style="font-weight: 300; font-size: 22px;"> <%= total %> € </p>
             <% end %>
           </p>
         </div>
@@ -41,7 +41,7 @@
     <!-- Centered title -->
 
     <div class="col-12 mb-4">
-      <h2 class="fw-bold">Bookings pending</h2>
+      <h2 class="fw-bold">Bookings requests for your dreams</h2>
     </div>
     <!-- Dreams grid -->
 
@@ -68,8 +68,10 @@
                 <p> <%= booking.status %></p>
                 </div>
                 <div class ='d-flex justify-content-between align-items-center p-3 border rounded shadow-sm bg-light'>
-                <% if booking.status = true %>
-                <p>Booking accepted</p>
+                <% if booking.status == true %>
+                <p>Booking accepted ✅ </p>
+                <% elsif booking.status == false %>
+                <p>Booking rejected ❌ </p>
                 <% else %>
                 <%= link_to 'Accept', accept_path(booking), class: 'btn btn-success', data: { turbo_method: "PATCH" }  %>
                 <%= link_to 'Decline', decline_path(booking), class: 'btn btn-danger', data: { turbo_method: "PATCH" }  %>
