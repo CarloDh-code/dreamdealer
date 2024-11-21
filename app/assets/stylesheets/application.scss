@@ -10,3 +10,16 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+.age-logo {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 16px; /* Augmente la taille de l'émoji */
+  color: #ff0000; /* Rouge vif pour attirer l'attention */
+  background-color: rgba(255, 255, 255, 0.8); /* Fond blanc légèrement transparent */
+  padding: 10px; /* Augmente un peu l'espace autour */
+  border-radius: 8px; /* Bords arrondis plus larges */
+  font-weight: bold;
+  z-index: 10;
+}
