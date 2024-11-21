@@ -1,6 +1,21 @@
 <h1 class="text-center my-4">Ready to dream?</h1>
 
 <div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8 my-3">
+      <%= form_with url: dreams_path, method: :get, class: "input-group shadow rounded" do %>
+        <%= text_field_tag :query,
+              params[:query],
+              class: "form-control form-control-lg",
+              placeholder: "Search for a dream...",
+              aria: { label: "Search for a dream" }
+          %>
+        <button type="submit" class="btn btn-primary btn-lg">
+          <i class="fas fa-search"></i>
+        </button>
+      <% end %>
+    </div>
+  </div>
   <div class="row">
     <% @dreams.each do |dream| %>
       <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">

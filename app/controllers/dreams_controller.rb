@@ -3,6 +3,14 @@ before_action :set_dream, only: [:show]
 
   def index
     @dreams = Dream.all
+    if params[:query].present?
+      sql_subquery = <<~SQL
+        dreams.title ILIKE :query
+        OR dreams.description ILIKE :query
+        OR dreams.category ILIKE :query
+      SQL
+      @dreams = @dreams.joins(:user).where(sql_subquery, query: "%#{params[:query]}%")
+    end
   end
 
   def show
