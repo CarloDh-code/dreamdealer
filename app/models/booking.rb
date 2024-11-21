@@ -12,4 +12,10 @@ class Booking < ApplicationRecord
 
     (self.end_date - self.start_date).to_i * self.dream.price_per_night
   end
+
+  def number_of_nights
+    return 0 unless end_date.present? && start_date.present?
+
+    (self.end_date - self.start_date).to_i
+  end
 end

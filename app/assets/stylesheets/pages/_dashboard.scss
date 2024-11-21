@@ -22,3 +22,11 @@
   font-size: 24px;
   font-weight: 600;
 }
+
+.hover-zoom {
+  transition: transform 0.3s ease-in-out;
+}
+
+.hover-zoom:hover {
+  transform: scale(1.05); /* Augmente la taille de 5% au survol */
+}

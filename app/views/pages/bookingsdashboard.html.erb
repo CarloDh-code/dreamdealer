@@ -1,11 +1,10 @@
 <div class="container display">
   <!-- Navbar section -->
   <div class="d-flex justify-content-between align-items-center bg-gradient rounded-5 m-3 p-3 shadow">
-    <div class="d-flex align-items-center">
-        <%= image_tag "https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/avatar-512.png", class: "rounded-circle", alt: "avatar", width: 70  %>
-      </a>
+      <%= link_to dashboard_path(@user), class: "d-flex align-items-center text-decoration-none" do %>
+      <%= image_tag "https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/avatar-512.png", class: "rounded-circle", alt: "avatar", width: 70 %>
       <h3 class="ms-3"> <%= @user.nickname %> </h3>
-    </div>
+      <% end %>
     <div class="d-flex">
       <!-- Dreams Sold Card -->
       <div class="bg-transparent card_dash shadow-sm rounded p-2 m-1">
@@ -26,7 +25,7 @@
       </div>
       <div class="bg-transparent card_dash shadow-sm rounded p-2 m-1">
         <div class="card_dash-body">
-          <h5 class="card_dash-title text-center m-1">Bookings request pendings</h5>
+          <h5 class="card_dash-title text-center m-1">Booking requests sent</h5>
           <p class="card_dash-text fw-bold text-center m-1" id="reves-vendus">
             <%= @user.bookings.where(status: nil).where('start_date >= ?', Date.today).count %>
           </p>
@@ -57,15 +56,22 @@
                 <p class="card-text">
                   <strong><%= booking.dream.price_per_night %>€</strong> per night
                   <br>
-                  4.5 <i class="fa fa-star"></i>
+                  <% if booking.dream.reviews.empty? %>
+                  3.0 <i class="fa fa-star"></i>
+                <% else %>
+                  <%= booking.dream.average_rating %> <i class="fa fa-star"></i>
+                <% end %>
                 </p>
                 <%# <% if dream.boo %>
                 <p class="text-secondary"> First night : <strong><%= booking.start_date %></strong></p>
-                <p class="text-secondary"> Price per night: <strong><%= booking.dream.price_per_night %>€</strong></p>
-                <% if booking.status = false %>
-                <p class="text-secondary"> Booking request sent</p>
+                <p class="text-secondary"> Rented for <strong><%= booking.number_of_nights %> nights</strong></p>
+                <p class="text-secondary"> Total : <strong><%= booking.total_price %>€</strong></p>
+                <% if booking.status == nil %>
+                <p class="text-secondary"> Booking request sent ⏳</p>
+                <% elsif booking.status == true %>
+                <p class="text-secondary"> Booking accepted ✅</p>
                 <% else %>
-                <p class="text-secondary"> Booking accepted !</p>
+                 <p class="text-secondary"> Booking declined 💔</p>
                 <% end %>
               </div>
             </div>

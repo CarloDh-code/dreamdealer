@@ -1,5 +1,6 @@
 require "open-uri"
 require "faker"
+require 'cloudinary'
 
 
 Booking.destroy_all
@@ -61,6 +62,10 @@ DESCS = [ " You plunge into a city ablaze, forced to leap across rooftops and do
 TITLES = ["Inferno's Run", "Blade Clash", "Skyfall Pursuit", "Jungle Ambush", "The Golden Stage", "Tower of Triumph",
   "Millionaire's Gala", "Legacy Creator", "Nebula Voyager", "Whispers in the Abyss", "Echoes of Eternity", "City of Light and Shadows"]
 
+
+  URLS1 = ['https://res.cloudinary.com/dhwtnnav8/image/upload/v1732220347/dream_1_mo9inl.png','https://res.cloudinary.com/dhwtnnav8/image/upload/v1732220348/dream_2_o6fn83.png', 'https://res.cloudinary.com/dhwtnnav8/image/upload/v1732220348/dream_3_balmwi.png', 'https://res.cloudinary.com/dhwtnnav8/image/upload/v1732220348/dream_4_i2vpx8.png', 'https://res.cloudinary.com/dhwtnnav8/image/upload/v1732220349/dream_5_aqchoj.png', 'https://res.cloudinary.com/dhwtnnav8/image/upload/v1732220348/dream_6_dtgtts.png', 'https://res.cloudinary.com/dhwtnnav8/image/upload/v1732220350/dream_7_sopwt0.png', 'https://res.cloudinary.com/dhwtnnav8/image/upload/v1732220350/dream_8_mrnbh7.png', 'https://res.cloudinary.com/dhwtnnav8/image/upload/v1732220350/dream_9_szfjbs.jpg', 'https://res.cloudinary.com/dhwtnnav8/image/upload/v1732220351/dream_10_p3vgpc.jpg', 'https://res.cloudinary.com/dhwtnnav8/image/upload/v1732220352/dream_11_pgcciz.jpg', 'https://res.cloudinary.com/dhwtnnav8/image/upload/v1732220351/dream_12_xaabgl.jpg']
+  URLS2 = ['https://res.cloudinary.com/dhwtnnav8/image/upload/v1732223577/dream_1_2_pcvrsn.webp', 'https://res.cloudinary.com/dhwtnnav8/image/upload/v1732223578/dream_2_2_wvmmxy.webp', 'https://res.cloudinary.com/dhwtnnav8/image/upload/v1732223578/dream_2_3_vq1g9w.webp', 'https://res.cloudinary.com/dhwtnnav8/image/upload/v1732223579/dream_4_2_hxzhcg.png', 'https://res.cloudinary.com/dhwtnnav8/image/upload/v1732223582/dream_5_2_hcpp5c.png', 'https://res.cloudinary.com/dhwtnnav8/image/upload/v1732223584/dream_6_2_y8mgcg.png', 'https://res.cloudinary.com/dhwtnnav8/image/upload/v1732223585/dream_7_2_fj5e2e.png', 'https://res.cloudinary.com/dhwtnnav8/image/upload/v1732223583/dream8_2_fftksk.png', 'https://res.cloudinary.com/dhwtnnav8/image/upload/v1732223580/dream_9_2_afhse5.png', 'https://res.cloudinary.com/dhwtnnav8/image/upload/v1732223580/dream_10_2_qwr1b8.png', 'https://res.cloudinary.com/dhwtnnav8/image/upload/v1732223581/dream_11_2_jyaqsd.png', 'https://res.cloudinary.com/dhwtnnav8/image/upload/v1732223582/dream_12_2_dz6zcv.png']
+
 antou = User.create!(email: "antoine@dream.fr", password: "123456", nickname: "antou")
 
 mik = User.create!(email: "mik@dream.fr", password: "123456", nickname: "mikmik")
@@ -68,9 +73,6 @@ mik = User.create!(email: "mik@dream.fr", password: "123456", nickname: "mikmik"
 taib = User.create!(email: "taib@dream.fr", password: "123456", nickname: "taibinho")
 
 carlos = User.create!(email: "carlo@dream.fr", password: "123456", nickname: "carlos")
-
-
-# url = "http://tmdb.lewagon.com/movie/top_rated"
 
 
 8.times do |i|
@@ -84,24 +86,16 @@ carlos = User.create!(email: "carlo@dream.fr", password: "123456", nickname: "ca
         user: [antou, taib, carlos, mik].sample
       )
 
-    # if dream.status
-    #   rand(1..3).times do
-    #     start_date = Faker::Date.between(from: Date.today, to: Date.today + 30)
-    #     end_date = start_date + rand(1..7)
-    #     Booking.create!(
-    #       start_date: start_date,
-    #       end_date: end_date,
-    #       dream: dream,
-    #       user: [antou, taib, carlos, mik].sample
-    #     )
-    #   end
-    # end
+    image_path3 = URLS1[i]  # Vous devez remplacer cela par un chemin valide
+    file_photo3 = URI.open(image_path3)
 
-    image_path = "/Users/admin/code/dreamdealer/app/assets/dreampics/dream##{i+1}.png"  # Vous devez remplacer cela par un chemin valide
-    file_photo = File.open(image_path)
+    image_path4 = URLS2[i]  # Vous devez remplacer cela par un chemin valide
+    file_photo4 = URI.open(image_path4)
 
     # Associez l'image à votre objet `dream`
-    dream.photos.attach(io: file_photo, filename: "dream##{i+1}.png", content_type: "image/png")
+    dream.photos.attach(io: file_photo3, filename: "dream##{i+1}.png", content_type: "image/png")
+    dream.photos.attach(io: file_photo4, filename: "dream##{i+1}#2.png", content_type: "image/png")
+
 
     puts "Created Dream: #{dream.title}"
   end
@@ -118,51 +112,17 @@ puts "finished"
     user: [antou, taib, carlos, mik].sample
   )
 
-  # if dream.status
-  #   rand(1..3).times do
-  #     start_date = Faker::Date.between(from: Date.today, to: Date.today + 30)
-  #     end_date = start_date + rand(1..7)
-  #     Booking.create!(
-  #       start_date: start_date,
-  #       end_date: end_date,
-  #       dream: dream,
-  #       user: [antou, taib, carlos, mik].sample
-  #     )
-  #   end
-  # end
 
-  image_path = "/Users/admin/code/dreamdealer/app/assets/dreampics/dream##{j+9}.jpg"  # Vous devez remplacer cela par un chemin valide
-  file_photo = File.open(image_path)
 
-  # Associez l'image à votre objet `dream`
-  dream.photos.attach(io: file_photo, filename: "dream##{j+9}.jpg", content_type: "image/jpg")
+  image_path1 = URLS1[j+8]  # Vous devez remplacer cela par un chemin valide
+    file_photo1 = URI.open(image_path1)
+
+    image_path2 = URLS2[j+8]  # Vous devez remplacer cela par un chemin valide
+    file_photo2 = URI.open(image_path2)
+
+    # Associez l'image à votre objet `dream`
+    dream.photos.attach(io: file_photo1, filename: "dream##{j+9}.png", content_type: "image/png")
+    dream.photos.attach(io: file_photo2, filename: "dream##{j+9}#2.png", content_type: "image/png")
 
   puts "Created Dream: #{dream.title}"
 end
-
-# dream_2 = Dream.create!(title: "A dream full of love"  ,
-#   description: "It is a lovely night in my mind" ,
-#   category: ["action", "success", "lust", "dreamy", "adventure", "travel", "fantasy", "time traveler"].sample,
-#   price_per_night: rand(25..50),
-#   age_limit: rand(12..20) ,
-#   number_of_roles: rand(1..4) ,
-#   user: mik
-# )
-
-# dream_3 = Dream.create!(title: "A dream full of war"  ,
-#   description: "It is a awwful day in my mind" ,
-#   category: ["action", "success", "lust", "dreamy", "adventure", "travel", "fantasy", "time traveler"].sample,
-#   price_per_night: rand(25..50),
-#   age_limit: rand(12..20) ,
-#   number_of_roles: rand(1..4) ,
-#   user: taib
-# )
-
-# dream_4 =Dream.create!(title: "A dream full of sport"  ,
-#   description: "It is a lovely day in my sportday" ,
-#   category: ["action", "success", "lust", "dreamy", "adventure", "travel", "fantasy", "time traveler"].sample,
-#   price_per_night: rand(25..50),
-#   age_limit: rand(12..20) ,
-#   number_of_roles: rand(1..4) ,
-#   user: carlos
-# )
