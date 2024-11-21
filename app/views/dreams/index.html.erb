@@ -20,7 +20,7 @@
     <% @dreams.each do |dream| %>
       <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
         <%= link_to dream_path(dream), class: "text-decoration-none" do %>
-          <div class="card h-100 rounded-5">
+          <div class="card h-100 rounded-5 position-relative">
             <% if dream.photos.attached? %>
               <%= cl_image_tag(dream.photos[0].key, crop: :fill, class: 'card-img-top same-size rounded-top-5', alt: dream.title) %>
             <% else %>
@@ -31,15 +31,22 @@
               <p class="card-text">
                 <strong><%= dream.price_per_night %>€</strong> per night
                 <br>
-                
+
                 <% if dream.reviews.empty? %>
                   3.0 <i class="fa fa-star"></i>
                 <% else %>
-                <%= dream.average_rating %> <i class="fa fa-star"></i>
+                  <%= dream.average_rating %> <i class="fa fa-star"></i>
                 <% end %>
               </p>
               <p class="text-secondary">Hosted by: <strong><%= dream.user.nickname %></strong></p>
+              <p class="text-secondary">Category: <strong><%= dream.category %></strong></p>
             </div>
+
+            <% if dream.age_limit.present? && dream.age_limit < 18 %>
+              <div class="age-logo">
+                🔞
+              </div>
+            <% end %>
           </div>
         <% end %>
       </div>
