@@ -39,10 +39,54 @@
   <!-- Main content section -->
   <div class="row text-center">
     <!-- Centered title -->
+
+    <div class="col-12 mb-4">
+      <h2 class="fw-bold">Bookings pending</h2>
+    </div>
+    <!-- Dreams grid -->
+
+<div class="col-12 d-flex flex-wrap justify-content-center">
+      <% @bookings.each do |booking| %>
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
+          <%= link_to dream_path(booking.dream), class: "text-decoration-none" do %>
+            <div class="card h-100" data-aos="zoom-in">
+              <% if booking.dream.photos.attached? %>
+                <%= cl_image_tag(booking.dream.photos[0].key, crop: :fill, class: 'card-img-top same-size', alt: booking.dream.title) %>
+              <% else %>
+                <%= image_tag 'dreamdefault.png', class: 'card-img-top same-size', alt: booking.dream.title %>
+              <% end %>
+              <div class="card-body text-center">
+                <h4 class="card-title"><%= booking.dream.title %></h4>
+                <div class="card-text">
+                  <strong><%= booking.dream.price_per_night %>€</strong> per night
+                  <br>
+                 <% if booking.dream.reviews.empty? %>
+                  3.0 <i class="fa fa-star"></i>
+                <% else %>
+                <%= booking.dream.average_rating %> <i class="fa fa-star"></i>
+                <% end %>
+                <p> <%= booking.status %></p>
+                </div>
+                <div class ='d-flex justify-content-between align-items-center p-3 border rounded shadow-sm bg-light'>
+                <% if booking.status = true %>
+                <p>Booking accepted</p>
+                <% else %>
+                <%= link_to 'Accept', accept_path(booking), class: 'btn btn-success', data: { turbo_method: "PATCH" }  %>
+                <%= link_to 'Decline', decline_path(booking), class: 'btn btn-danger', data: { turbo_method: "PATCH" }  %>
+                <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+
     <div class="col-12 mb-4">
       <h2 class="fw-bold">Dreams created</h2>
     </div>
-    <!-- Dreams grid -->
+
     <div class="col-12 d-flex flex-wrap justify-content-center">
       <% @dreams.each do |dream| %>
         <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
@@ -58,7 +102,11 @@
                 <p class="card-text">
                   <strong><%= dream.price_per_night %>€</strong> per night
                   <br>
-                  4.5 <i class="fa fa-star"></i>
+                 <% if dream.reviews.empty? %>
+                  3.0 <i class="fa fa-star"></i>
+                <% else %>
+                <%= dream.average_rating %> <i class="fa fa-star"></i>
+                <% end %>
                 </p>
                 <% if dream.bookings.empty? %>
                 <p class="text-secondary">Number of bookings :</strong> 0 </strong></p>

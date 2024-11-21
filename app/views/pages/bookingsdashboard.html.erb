@@ -44,8 +44,13 @@
                   4.5 <i class="fa fa-star"></i>
                 </p>
                 <%# <% if dream.boo %>
-                <p class="text-secondary">Number of bookings : <strong><%= booking.start_date %></strong></p>
+                <p class="text-secondary"> First night : <strong><%= booking.start_date %></strong></p>
                 <p class="text-secondary"> Price per night: <strong><%= booking.dream.price_per_night %>€</strong></p>
+                <% if booking.status = false %>
+                <p class="text-secondary"> Booking request sent</p>
+                <% else %>
+                <p class="text-secondary"> Booking accepted !</p>
+                <% end %>
               </div>
             </div>
           <% end %>

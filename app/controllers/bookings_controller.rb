@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only:[:show]
+  before_action :set_booking, only:[:show, :accept, :decline]
   before_action :set_dream, only:[:create]
 
   def show
@@ -19,6 +19,19 @@ class BookingsController < ApplicationController
     else
       render :show, status: :unprocessable_entity
     end
+  end
+
+
+  def accept
+    @booking.status = true
+    @booking.save!
+    redirect_to dreamsdashboard_path
+  end
+
+  def decline
+    @booking.status = false
+    @booking.save!
+    redirect_to dreamsdashboard_path
   end
 
   def update
