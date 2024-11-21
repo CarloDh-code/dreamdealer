@@ -10,20 +10,13 @@
       <!-- Dreams Sold Card -->
       <div class="bg-transparent card shadow-sm rounded-lg m-1">
         <div class="card-body">
-          <h5 class="card-title">Number of bookings</h5>
+          <h5 class="card-title">My bookings</h5>
           <p class="card-text fw-bold" id="reves-vendus">
             <%= @user.bookings.count %>
           </p>
         </div>
       </div>
       <!-- Total Earnings Card -->
-      <div class="bg-transparent card shadow-sm rounded-lg m-1">
-        <div class="card-body ">
-          <h5 class="card-title">Total Spendings</h5>
-          <p class="card-text fw-bold" id="total-earnings">
-          </p>
-        </div>
-      </div>
     </div>
   </div>
   <!-- Main content section -->
@@ -34,24 +27,25 @@
     </div>
     <!-- Dreams grid -->
     <div class="col-12 d-flex flex-wrap justify-content-center">
-      <% @dreams.each do |dream| %>
+      <% @bookings.each do |booking| %>
         <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
-          <%= link_to dream_path(dream), class: "text-decoration-none" do %>
+          <%= link_to dream_path(booking.dream), class: "text-decoration-none" do %>
             <div class="card h-100" data-aos="zoom-in">
-              <% if dream.photos.attached? %>
-                <%= cl_image_tag(dream.photos[0].key, crop: :fill, class: 'card-img-top same-size', alt: dream.title) %>
+              <% if booking.dream.photos.attached? %>
+                <%= cl_image_tag(booking.dream.photos[0].key, crop: :fill, class: 'card-img-top same-size', alt: booking.dream.title) %>
               <% else %>
-                <%= image_tag 'dreamdefault.png', class: 'card-img-top same-size', alt: dream.title %>
+                <%= image_tag 'dreamdefault.png', class: 'card-img-top same-size', alt: booking.dream.title %>
               <% end %>
               <div class="card-body text-center">
-                <h4 class="card-title"><%= dream.title %></h4>
+                <h4 class="card-title"><%= booking.dream.title %></h4>
                 <p class="card-text">
-                  <strong><%= dream.price_per_night %>€</strong> per night
+                  <strong><%= booking.dream.price_per_night %>€</strong> per night
                   <br>
                   4.5 <i class="fa fa-star"></i>
                 </p>
-                <p class="text-secondary">Number of bookings : <strong><%= dream.bookings.count %></strong></p>
-                <p class="text-secondary"> Price per night: <strong><%= dream.price_per_night %>€</strong></p>
+                <%# <% if dream.boo %>
+                <p class="text-secondary">Number of bookings : <strong><%= booking.start_date %></strong></p>
+                <p class="text-secondary"> Price per night: <strong><%= booking.dream.price_per_night %>€</strong></p>
               </div>
             </div>
           <% end %>
