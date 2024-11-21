@@ -14,6 +14,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.dream = @dream
     @booking.user = current_user
+    @booking.status = nil
     if @booking.save
       redirect_to bookingsdashboard_path
     else

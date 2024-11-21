@@ -1,22 +1,37 @@
 <%= simple_form_for([dream, booking], html: { class: "form-inline" }) do |f| %>
-<h4 class="text-center">Book your dream</h3>
+  <h4 class="text-center">Book your dream</h4>
+
+  <!-- Start Date Field -->
   <div class="form-group">
     <%= f.label :start_date, class: "form-label" %>
     <%= f.input :start_date,
       as: :string,
-      input_html: { class: "form-control", data: { controller: "datepicker" } },
+      input_html: { class: "form-control", id: "startDate", data: { controller: "datepicker" } },
       label: false
     %>
   </div>
+
+  <!-- End Date Field -->
   <div class="form-group">
     <%= f.label :end_date, class: "form-label" %>
     <%= f.input :end_date,
       as: :string,
-      input_html: { class: "form-control", data: { controller: "datepicker" } },
+      input_html: { class: "form-control", id: "endDate", data: { controller: "datepicker" } },
       label: false
     %>
   </div>
+
+  <!-- Total Price Section -->
+  <div class="form-group mt-3">
+    <label for="totalPrice">Total:</label>
+    <p id="totalPrice" class="fw-bold">0€</p>
+  </div>
+
+  <!-- Submit Button -->
   <div class="form-group text-center">
     <%= f.submit "Book it now", class: "btn btn-info text-white" %>
   </div>
+
+  <!-- Hidden Price Per Night -->
+  <div data-price="<%= dream.price_per_night %>" id="dreamDetails" hidden></div>
 <% end %>
