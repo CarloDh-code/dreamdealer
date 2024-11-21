@@ -1,12 +1,13 @@
 <div class="container mt-5">
-  <div class="bg-gradient rounded-4 p-3 row align-items-start shadow">
+  <div class="bg-transparent rounded-4 p-3 row align-items-start shadow">
 
     <!-- Left Column: Image/Carousel -->
     <div class="col-md-4 text-center">
       <% if @dream.photos.empty? %>
         <%= image_tag 'dreamdefault.png', class: 'card-img-top', alt: @dream.title %>
       <% else %>
-        <div id="carouselExampleIndicators-<%= @dream.id %>" class="carousel slide" data-bs-ride="carousel">
+        <div id="carouselExampleIndicators-<%= @dream.id %>" class="carousel slide" data-bs-ride="carousel"
+     data-bs-interval="3000">
           <div class="carousel-indicators">
             <% @dream.photos.each_with_index do |photo, index| %>
               <li data-bs-target="#carouselExampleIndicators-<%= @dream.id %>"
@@ -19,7 +20,7 @@
           <div class="carousel-inner">
             <% @dream.photos.each_with_index do |photo, index| %>
               <div class="carousel-item <%= 'active' if index == 0 %>">
-                <%= cl_image_tag photo.key, crop: :fill, class: 'd-block w-100 card-img-top', alt: @dream.title %>
+                <%= cl_image_tag photo.key, crop: :fill, class: 'd-block w-100 card-img-top rounded-4', alt: @dream.title %>
               </div>
             <% end %>
           </div>
@@ -42,7 +43,7 @@
     <div class="col-md-6 d-flex flex-column justify-content-start">
       <h1 class="mb-3"><%= @dream.title %></h1>
       <h5 class="text-muted mb-2"><strong>Details of your next dream:</strong></h5>
-      <p class="text-muted"><%= @dream.description %></p>
+      <p class="text-muted"><em><%= @dream.description %></em></p>
       <p class="mb-1"><strong>Category:</strong> <%= @dream.category %></p>
       <p class="mb-1"><strong>Price per night:</strong> <%= @dream.price_per_night %>€</p>
       <p class="mb-1"><strong>Number of roles:</strong> <%= @dream.number_of_roles %></p>
@@ -57,43 +58,48 @@
 
   </div> <!-- End of row -->
 
-  <!-- Booking Form -->
-  <% if current_user != @dream.user %>
-  <div class="d-flex justify-content-center align-items-center m-1 p-3">
-    <div class="m-2 bg-light text-dark p-3 rounded-4 shadow">
-      <%= render "formbooking", dream: @dream, booking: @booking %>
-    </div>
-  </div>
-
-  <div class="text-center m-4">
-    <%= link_to "Back to the Dreams", dreams_path, class: "btn btn-primary" %>
-  </div>
-  <% end %>
-
-  <div class="row mt-5">
-    <div class="col-12 col-sm-6">
-      <% if @dream.reviews.empty? %>
-        <small><em class="text-muted">Be the first one to review this dream</em></small>
-      <% end %>
-      <h3><%= @dream.reviews.count%> reviews for this dream</h3>
-      <% @dream.reviews.each do |review| %>
-        <div>
-          <% review.rating.times do %>
-            <i class="fas fa-star star-yellow"></i>
+<% if current_user != @dream.user %>
+  <div class="container mt-5">
+    <div class="row g-4">
+      <!-- Reviews Section (Left) -->
+      <div class="col-lg-8">
+        <div class="bg-light shadow rounded-5 p-4">
+          <% if @dream.reviews.empty? %>
+            <small><em class="text-muted">Be the first one to review this dream</em></small>
           <% end %>
-          <small><em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at) %> ago</em></small>
-          <p class="mb-0"><%= review.comment %></p>
-        </div>
-        <hr>
-      <% end %>
+          <h4><%= @dream.reviews.count %> reviews for this dream</h4>
+          <% @dream.reviews.each do |review| %>
+            <div class="bg-white rounded-5 p-4 my-3">
+              <% review.rating.times do %>
+                <i class="fas fa-star star-yellow"></i>
+              <% end %>
+              <small><em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at) %> ago</em></small>
+              <p class="mb-0"><%= review.comment %></p>
+            </div>
+          <% end %>
+          <div class="my-2">
+      <%= link_to "Give a review", new_dream_review_path(@dream), class: "btn btn-primary p-2 rounded" %>
     </div>
 
-    <div class="text-center m-4">
-      <%= link_to "Give a review", new_dream_review_path(@dream), class: "btn btn-primary" %>
+        </div>
+      </div>
+
+
+      <!-- Booking Form Section (Right) -->
+      <div class="col-lg-4 d-flex flex-column justify-content-between">
+        <div class="bookingy text-dark p-3 rounded-4 shadow">
+          <%= render "formbooking", dream: @dream, booking: @booking %>
+        </div>
+      </div>
     </div>
+  </div>
+<% end %>
+
+
+
   <!-- Back to Dreams Button -->
 
 </div>
-
-
-<%# <h2>Reviews for this Dream:</h2> %>
+ <div class="text-center mt-5">
+          <%= link_to "Back to the Dreams", dreams_path, class: "btn btn-primary m-4" %>
+        </div>

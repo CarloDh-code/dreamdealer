@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only:[:show]
+  before_action :set_booking, only:[:show, :accept, :decline]
   before_action :set_dream, only:[:create]
 
   def show
@@ -14,11 +14,26 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.dream = @dream
     @booking.user = current_user
+    @booking.status = nil
     if @booking.save
       redirect_to bookingsdashboard_path
     else
-      render :show, status: :unprocessable_entity
+      flash.now[:alert] = "Erreur lors de la création de la réservation."
+
     end
+  end
+
+
+  def accept
+    @booking.status = true
+    @booking.save!
+    redirect_to dreamsdashboard_path
+  end
+
+  def decline
+    @booking.status = false
+    @booking.save!
+    redirect_to dreamsdashboard_path
   end
 
   def update

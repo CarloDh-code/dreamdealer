@@ -4,19 +4,18 @@ class PagesController < ApplicationController
 
   def dashboard
     @user = current_user
-    @bookings = @user.bookings # Fetches all bookings for the user
+    @bookings = @user.bookings
     @dreams = @user.dreams
   end
 
   def dreamsdashboard
     @user = current_user
-    @bookings = @user.bookings # Fetches all bookings for the user
-    @dreams = @user.dreams
+    @dreams = Dream.where(user: current_user)
+    @bookings = Booking.where(dream_id: @dreams.pluck(:id))
   end
 
   def bookingsdashboard
     @user = current_user
-    @bookings = @user.bookings # Fetches all bookings for the user
-    @dreams = @user.dreams
+    @bookings = @user.bookings
   end
 end

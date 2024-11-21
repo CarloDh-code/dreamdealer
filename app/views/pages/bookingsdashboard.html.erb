@@ -8,22 +8,16 @@
     </div>
     <div class="d-flex">
       <!-- Dreams Sold Card -->
-      <div class="bg-transparent card shadow-sm rounded-lg m-1">
-        <div class="card-body">
-          <h5 class="card-title">Number of bookings</h5>
-          <p class="card-text fw-bold" id="reves-vendus">
+      <div class="bg-transparent card_dash shadow-sm rounded p-2 m-1">
+        <div class="card_dash-body">
+          <h5 class="card_dash-title text-center m-1">My bookings</h5>
+          <p class="card_dash-text fw-bold text-center m-1" id="reves-vendus">
             <%= @user.bookings.count %>
+
           </p>
         </div>
       </div>
       <!-- Total Earnings Card -->
-      <div class="bg-transparent card shadow-sm rounded-lg m-1">
-        <div class="card-body ">
-          <h5 class="card-title">Total Spendings</h5>
-          <p class="card-text fw-bold" id="total-earnings">
-          </p>
-        </div>
-      </div>
     </div>
   </div>
   <!-- Main content section -->
@@ -33,25 +27,33 @@
       <h2 class="fw-bold">Dreams you've made</h2>
     </div>
     <!-- Dreams grid -->
-    <div class="col-12 d-flex flex-wrap justify-content-center">
-      <% @dreams.each do |dream| %>
+    <div class="col-12 d-flex flex-wrap justify-content-center mb-5">
+      <% @bookings.each do |booking| %>
         <div class="col-6 col-sm-6 col-md-4 col-lg-3 mb-4">
-          <%= link_to dream_path(dream), class: "text-decoration-none" do %>
-            <div class="card h-100" data-aos="zoom-in">
-              <% if dream.photos.attached? %>
-                <%= cl_image_tag(dream.photos[0].key, crop: :fill, class: 'card-img-top same-size', alt: dream.title) %>
+          <%= link_to dream_path(booking.dream), class: "text-decoration-none" do %>
+            <div class="card h-100 m-3 rounded-5" data-aos="zoom-in">
+              <% if booking.dream.photos.attached? %>
+                <%= cl_image_tag(booking.dream.photos[0].key, crop: :fill, class: 'card-img-top same-size rounded-top-5', alt: booking.dream.title) %>
               <% else %>
-                <%= image_tag 'dreamdefault.png', class: 'card-img-top same-size', alt: dream.title %>
+                <%= image_tag 'dreamdefault.png', class: 'card-img-top same-size', alt: booking.dream.title %>
               <% end %>
               <div class="card-body text-center">
-                <h4 class="card-title"><%= dream.title %></h4>
+                <h4 class="card-title"><%= booking.dream.title %></h4>
                 <p class="card-text">
-                  <strong><%= dream.price_per_night %>€</strong> per night
+                  <strong><%= booking.dream.price_per_night %>€</strong> per night
                   <br>
                   4.5 <i class="fa fa-star"></i>
                 </p>
-                <p class="text-secondary">Number of bookings : <strong><%= dream.bookings.count %></strong></p>
-                <p class="text-secondary"> Price per night: <strong><%= dream.price_per_night %>€</strong></p>
+                <%# <% if dream.boo %>
+                <p class="text-secondary"> First night : <strong><%= booking.start_date %></strong></p>
+                <p class="text-secondary"> Price per night: <strong><%= booking.dream.price_per_night %>€</strong></p>
+                <% if booking.status == nil %>
+                <p class="text-secondary"> Booking request sent</p>
+                <% elsif booking.status == true %>
+                <p class="text-secondary"> Booking accepted !</p>
+                <% else %>
+                <p class="text-secondary"> Booking declined !</p>
+                <% end %>
               </div>
             </div>
           <% end %>
@@ -60,6 +62,14 @@
     </div>
   </div>
 </div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
 <style>
   /* Make sure all images have the same size */
   .same-size {

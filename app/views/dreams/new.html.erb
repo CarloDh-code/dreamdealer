@@ -1,9 +1,14 @@
 <div class="container py-5">
-  <div class="row">
-    <div class="col-12 col-md-6 offset-lg-3">
-      <div class="bg-white rounded-5 p-3 shadow">
-        <h2 class=" text-center">Create your own dream</h2>
-        <%= render "form", dream: @dream  %>
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body p-5">
+          <h2 class="text-center mb-4 fw-bold text-primary">Create Your Dream</h2>
+          <p class="text-center text-muted mb-4">
+            Share your unique dream and let others experience it.
+          </p>
+          <%= render "form", dream: @dream %>
+        </div>
       </div>
     </div>
   </div>
