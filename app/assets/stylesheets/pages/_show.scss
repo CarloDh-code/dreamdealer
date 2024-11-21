@@ -7,3 +7,14 @@
   width: 100%; /* Ensures images span the full width of the container */
   height: 100%; /* Ensures images span the full height of the container */
 }
+
+
+body {
+  background: url('backgroudprojet.png') no-repeat center center fixed;
+  background-size: cover; /* Makes the image cover the entire page */
+}
+
+.bookingy {
+  background-color: #d7d7d796;
+  border: 2px;
+}
