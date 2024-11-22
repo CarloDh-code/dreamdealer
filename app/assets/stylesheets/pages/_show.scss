@@ -18,3 +18,11 @@ body {
   background-color: #d7d7d796;
   border: 2px;
 }
+
+.star-show {
+  font-size: 20px; /* Taille des étoiles */
+  color: #ffd700; /* Couleur dorée pour les étoiles */
+  z-index: 100; /* Les étoiles apparaissent devant le reste */
+  display: flex; /* Pour aligner les étoiles en ligne */
+  gap: 5px; /* Espace entre chaque étoile */
+}

@@ -42,7 +42,7 @@
     <!-- Center Column: Dream Details -->
     <div class="col-md-6 d-flex flex-column justify-content-start">
       <h1 class="mb-3"><%= @dream.title %></h1>
-      <h5 class="text-muted mb-2"><strong>Details of your next dream:</strong></h5>
+      <h5 class="text-muted mb-2"><strong>Dream scenario:</strong></h5>
       <p class="text-muted"><em><%= @dream.description %></em></p>
         <div class="d-flex align-items-center">
           <i class="fa-solid fa-list"></i>
@@ -56,13 +56,13 @@
           <i class="fa-solid fa-user"></i>
           <span class="m-2"><%= @dream.number_of_roles %></span>
         </div>
+        <div class="col-md-2 text-center star-show">
+          <% @dream.average_rating.round.times do %>
+            <i class="fas fa-star star-yellow"></i>
+        <% end %>
+    </div>
 
     <!-- Right Column: Rating -->
-    <div class="col-md-2 text-center">
-      <% @dream.average_rating.round.times do %>
-        <i class="fas fa-star star-yellow"></i>
-      <% end %>
-    </div>
 
   </div> <!-- End of row -->
 
@@ -79,7 +79,7 @@
           <% @dream.reviews.each do |review| %>
             <div class="bg-white rounded-5 p-4 my-3 d-flex flex-column">
               <div class="d-flex justify-content-between w-100">
-                <div class="d-flex">
+                <div class="d-flex star-show">
                   <% review.rating.times do %>
                     <i class="fas fa-star star-yellow"></i>
                   <% end %>
