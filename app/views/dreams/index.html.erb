@@ -64,6 +64,11 @@
                 🔞
               </div>
             <% end %>
+
+            <div class="fav-logo" data-controller="favorite" data-action="click->favorite#togglefavorite">
+              <i class="fa-regular fa-heart" data-favorite-target='like'></i>
+              <i class="fa-solid fa-heart d-none" data-favorite-target='dislike'></i>
+            </div>
           </div>
         <% end %>
       </div>

@@ -17,7 +17,7 @@
             <% if total.zero? %>
               <p style="font-weight: 200; font-size: 13px;"> <p class="text-left fw-bold"> <em>No request pending</em></p>
             <% else %>
-              <p style="font-weight: 300; font-size: 22px;"> <%= total %> € </p>
+              <p style="font-weight: 300; font-size: 22px;"> <%= total %> </p>
             <% end %>
           </p>
         </div>
@@ -83,16 +83,15 @@
                 <% else %>
                 <%= booking.dream.average_rating %> <i class="fa fa-star"></i>
                 <% end %>
-                <p>Rented by <%= booking.user.nickname %></p>
                 </div>
-                <div class ='d-flex justify-content-between align-items-center p-3 border rounded shadow-sm bg-light'>
+                <div class ='d-flex align-items-center mt-2 rounded justify-content-center'>
                 <% if booking.status == true %>
                 <p class = "text-center">Booking accepted ✅ </p>
                 <% elsif booking.status == false %>
                 <p class = "text-center">Booking rejected ❌ </p>
                 <% else %>
-                <%= link_to 'Accept', accept_path(booking), class: 'btn btn-success', data: { turbo_method: "PATCH" }  %>
-                <%= link_to 'Decline', decline_path(booking), class: 'btn btn-danger', data: { turbo_method: "PATCH" }  %>
+                <%= link_to 'Accept', accept_path(booking), class: 'btn btn-success me-1', data: { turbo_method: "PATCH" }  %>
+                <%= link_to 'Decline', decline_path(booking), class: 'btn btn-danger ms-1', data: { turbo_method: "PATCH" }  %>
                 <% end %>
                 </div>
 

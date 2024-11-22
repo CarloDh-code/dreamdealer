@@ -83,7 +83,8 @@ carlos = User.create!(email: "carlo@dream.fr", password: "123456", nickname: "ca
         category: ["Action", "Success", "Lust", "Dreamy", "Adventure", "Travel", "Fantasy", "Time traveler"].sample,
         age_limit: [12, 16, 18].sample,
         number_of_roles: rand(1..4) ,
-        user: [antou, taib, carlos, mik].sample
+        user: [antou, taib, carlos, mik].sample,
+        fav_status: false
       )
 
     image_path3 = URLS1[i]  # Vous devez remplacer cela par un chemin valide
@@ -109,7 +110,8 @@ puts "finished"
     price_per_night: rand(25..100),
     age_limit: [12, 16, 18].sample,
     number_of_roles: rand(1..4) ,
-    user: [antou, taib, carlos, mik].sample
+    user: [antou, taib, carlos, mik].sample,
+    fav_status: false
   )
 
 
@@ -134,7 +136,8 @@ dream13 = Dream.create!(
   price_per_night: 30,
   age_limit: 18,
   number_of_roles: 4 ,
-  user: taib
+  user: taib,
+  fav_status: false
 )
 
 url_1_dream_13 = 'https://res.cloudinary.com/dhwtnnav8/image/upload/v1732232010/dream_13_1_q4pq1g.png'
@@ -148,6 +151,3 @@ file_photo14 = URI.open(image_path14)
 
 dream13.photos.attach(io: file_photo13, filename: "dream#13#1.png", content_type: "image/png")
 dream13.photos.attach(io: file_photo14, filename: "dream#13#2.png", content_type: "image/png")
-
-
-
