@@ -1,38 +1,51 @@
 <h1 class="text-center my-4">Ready to dream?</h1>
 
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-12 md-8 my-3">
-      <%= form_with url: dreams_path, method: :get, local: true do %>
-        <div class="form-group">
-          <%= label_tag :query, "Search" %>
-          <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search for a dream..." %>
-        </div>
 
-        <div class="category-filters">
-          <h4>Filter by category:</h4>
-          <div class="categories-list">
-            <% @categories.each do |category| %>
-              <%= link_to category, dreams_path(category: category, query: params[:query], sort: params[:sort]), class: "btn btn-outline-primary category-btn #{'active' if params[:category] == category}" %>
-            <% end %>
-            <%= link_to "All Categories", dreams_path(query: params[:query], sort: params[:sort]), class: "btn btn-outline-secondary #{'active' if params[:category].blank?}" %>
+  <div class="row justify-content-center">
+  <div class="col-12 col-lg-8 my-3">
+    <%= form_with url: dreams_path, method: :get, local: true do %>
+      <div class="row align-items-center mb-4 bg-gradient p-4 rounded-5"> <!-- Create a row for Search and Sort -->
+        <!-- Search bar on the left -->
+        <div class="col-md-8">
+          <div class="form-group">
+            <%= label_tag :query, "Search" %>
+            <%= text_field_tag :query, params[:query], class: "form-control search-bar", placeholder: "Search for a dream..." %>
           </div>
         </div>
 
-        <div class="form-group">
-          <%= label_tag :sort, "Sort by" %>
-          <%= select_tag :sort, options_for_select([['Recently Added', 'recent'], ['Best Rated', 'best_rated']], params[:sort]), include_blank: "Default", class: "form-control" %>
+        <!-- Sort by dropdown on the right -->
+        <div class="col-md-4 text-md-start"> <!-- Align dropdown to the right -->
+          <div class="form-group">
+            <%= label_tag :sort, "Sort by" %>
+            <%= select_tag :sort, options_for_select([['Recently Added', 'recent'], ['Best Rated', 'best_rated']], params[:sort]), include_blank: "Default", class: "form-control" %>
+          </div>
         </div>
+      </div>
 
-        <div class="form-group">
-          <%= submit_tag "Apply Filters", class: "btn btn-primary" %>
-        </div>
+      <!-- Category Filters -->
+      <div class="bg-gradient p-4 rounded-5 d-flex flex-column align-items-center justify-content-center my-4">
+        <div class="category-filters text-center">
+          <h5 class="text-primary mb-3">Filter by category:</h5>
+            <div class="categories-list">
+              <% @categories.each do |category| %>
+                <%= link_to category, dreams_path(category: category, query: params[:query], sort: params[:sort]), class: "btn btn-outline-primary category-btn rounded-5 #{'active' if params[:category] == category}" %>
+              <% end %>
+              <%= link_to "All Categories", dreams_path(query: params[:query], sort: params[:sort]), class: "btn btn-outline-secondary rounded-5 #{'active' if params[:category].blank?}" %>
+            </div>
+      </div>
+
+      <!-- Apply Filters Button -->
+      <div class="form-group mt-3">
+        <%= submit_tag "Apply Filters", class: "btn btn-primary rounded-5" %>
+      </div>
+    </div>
+
+   </div>
+  </div>
+</div>
 
 
-        <div class="reset-filters">
-          <%= link_to "Reset all filters", dreams_path, class: "btn btn-outline-primary category-btn" %>
-        </div>
-
+<div class="container">
   <div class="row">
     <% @dreams.each do |dream| %>
       <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
@@ -46,17 +59,17 @@
             <div class="card-body text-center">
               <h4 class="card-title"><%= dream.title %></h4>
               <p class="card-text">
-                <strong><%= dream.price_per_night %>€</strong> per night
+                <strong><%= dream.price_per_night %>€</strong> / night
                 <br>
 
                 <% if dream.reviews.empty? %>
-                  3.0 <i class="fa fa-star"></i>
+                  3.0 <i class="fa fa-star mt-2"></i>
                 <% else %>
-                  <%= dream.average_rating %> <i class="fa fa-star"></i>
+                  <%= dream.average_rating %> <i class="fa fa-star mt-2"></i>
                 <% end %>
               </p>
-              <p class="text-secondary">Hosted by: <strong><%= dream.user.nickname %></strong></p>
-              <p class="text-secondary">Category: <strong><%= dream.category %></strong></p>
+              <p class="text-secondary"><em>Made by: </em><strong><%= dream.user.nickname %></strong></p>
+              <p class="text-primary"><i class="fa-solid fa-list m-2"></i><strong><%= dream.category %></strong></p>
             </div>
 
             <% if dream.age_limit.present? && dream.age_limit < 18 %>

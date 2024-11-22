@@ -44,17 +44,17 @@
       <h1 class="mb-3"><%= @dream.title %></h1>
       <h5 class="text-muted mb-2"><strong>Details of your next dream:</strong></h5>
       <p class="text-muted"><em><%= @dream.description %></em></p>
-        <div class="d-flex align-items-center mb-3">
-          <i class="fa-solid fa-list mr-3"></i>
-          <span class="ml-2"><%= @dream.category %></span>
+        <div class="d-flex align-items-center">
+          <i class="fa-solid fa-list"></i>
+          <span class="m-2"><%= @dream.category %></span>
         </div>
-        <div class="d-flex align-items-center mb-3">
-          <i class="fa-solid fa-tag mr-3"></i>
-          <span class="ml-2"><%= @dream.price_per_night %>€ / night</span>
+        <div class="d-flex align-items-center">
+          <i class="fa-solid fa-tag"></i>
+          <span class="m-2"><%= @dream.price_per_night %>€ / night</span>
         </div>
-        <div class="d-flex align-items-center mb-3">
-          <i class="fa-solid fa-user mr-3"></i>
-          <span class="ml-2"><%= @dream.number_of_roles %></span>
+        <div class="d-flex align-items-center">
+          <i class="fa-solid fa-user"></i>
+          <span class="m-2"><%= @dream.number_of_roles %></span>
         </div>
 
     <!-- Right Column: Rating -->
