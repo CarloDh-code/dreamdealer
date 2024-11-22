@@ -30,7 +30,7 @@
               <% @categories.each do |category| %>
                 <%= link_to category, dreams_path(category: category, query: params[:query], sort: params[:sort]), class: "btn btn-outline-primary category-btn rounded-5 #{'active' if params[:category] == category}" %>
               <% end %>
-              <%= link_to "All Categories", dreams_path(query: params[:query], sort: params[:sort]), class: "btn btn-outline-secondary rounded-5 #{'active' if params[:category].blank?}" %>
+              <%= link_to "All Categories", dreams_path(query: params[:query], sort: params[:sort]), class: "btn btn-outline-secondary rounded-5 mt-3 #{'active' if params[:category].blank?}" %>
             </div>
       </div>
 
