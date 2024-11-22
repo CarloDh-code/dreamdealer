@@ -3,10 +3,10 @@ require "faker"
 require 'cloudinary'
 
 
+Review.destroy_all
 Booking.destroy_all
 Dream.destroy_all
 User.destroy_all
-Review.destroy_all
 
 DESCS = [ " You plunge into a city ablaze, forced to leap across rooftops and dodge explosions to uncover a hidden treasure. The streets are filled with chaos as the fire spreads,
   and every step you take brings you closer to danger. Time is running out,
