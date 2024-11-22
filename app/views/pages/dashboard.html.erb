@@ -1,83 +1,69 @@
 <div class="content-wrap py-5">
   <h1 class="title display-4 mb-4 text-center">
-    Welcome to your Dream Dashboard, @<%= @user.nickname %> !
+    Welcome to your Dream Dashboard, @<%= @user.nickname %>!
   </h1>
-  <div class="content-container container text-center">
-    <div class="d-flex justify-content-between align-items-center bg-gradient rounded-5 m-3 p-3 shadow">
+  <div class="content-container min-height container text-center">
 
-      <!-- User info section -->
-      <div class="username d-flex align-items-center rounded-5 p-3">
-        <%= image_tag "https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/avatar-512.png", class: "rounded-circle", alt: "avatar", width: 70 %>
-        <h3 class="ms-3 fw-bold"> <%= @user.nickname %> </h3>
+    <!-- User Info Section -->
+    <div class="row justify-content-center mb-4">
+      <div class="col-auto mb-3">
+        <div class="username d-flex align-items-center bg-gradient rounded-5 p-3 shadow">
+          <%= image_tag "https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/avatar-512.png",
+            class: "rounded-circle", alt: "avatar", width: 70 %>
+          <h3 class="ms-3 fw-bold"><%= @user.nickname %></h3>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dashboard Cards -->
+    <div class="row rounded-5 shadow p-4 gx-4 gy-4">
+      <!-- Earnings Card -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card_dash shadow-sm rounded-5 p-4 hover-zoom">
+          <%= link_to dreamsdashboard_path, class: 'card_dash-body', style: 'display: block; text-decoration: none; color: inherit;' do %>
+            <p class="title_dash card_dash-title">TOTAL EARNINGS</p>
+            <p class="card_dash-text fw-bold display-5" id="total-earnings">
+              <%= @total_dashboard %>€
+            </p>
+          <% end %>
+        </div>
       </div>
 
-      <!-- Earnings card -->
-      <div class="d-flex">
-        <div class="username2 card_dash shadow-sm rounded-5 m-1 p-4 hover-zoom">
-          <%= link_to dreamsdashboard_path, class: 'card_dash-body m-3', style: 'display: block; text-decoration: none; color: inherit;' do %>
-            <div class="card_dash-body m-3">
-              <p class="title_dash card_dash-title">TOTAL EARNINGS</p>
-              <p class="card_dash-text fw-bold display-5" id="total-earnings">
-                <%= @total_dashboard %>€
-              </p>
-            </div>
+      <!-- Dreams Sold Card -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card_dash shadow-sm rounded-5 p-4 hover-zoom">
+          <%= link_to dreamsdashboard_path, class: 'card_dash-body', style: 'display: block; text-decoration: none; color: inherit;' do %>
+            <p class="title_dash card_dash-title">DREAMS SOLD</p>
+            <p class="card_dash-text fw-bold display-5" id="reves-vendus">
+              <%= @user.dreams.sum { |dream| dream.bookings.where(status: true).count } %>
+            </p>
           <% end %>
         </div>
+      </div>
 
-        <!-- Dreams sold card -->
-        <div class="username2 card_dash shadow-sm rounded-5 m-1 p-4 hover-zoom">
-          <%= link_to dreamsdashboard_path, class: 'card_dash-body m-3', style: 'display: block; text-decoration: none; color: inherit;' do %>
-            <div class="card_dash-body m-3">
-              <p class="title_dash card_dash-title">DREAMS SOLD</p>
-              <p class="card_dash-text fw-bold display-5" id="reves-vendus">
-                <%= @user.dreams.sum { |dream| dream.bookings.where(status: true).count } %>
-              </p>
-            </div>
+      <!-- Booking Requests Pending Card -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card_dash shadow-sm rounded-5 p-4 hover-zoom">
+          <%= link_to dreamsdashboard_path, class: 'card_dash-body', style: 'display: block; text-decoration: none; color: inherit;' do %>
+            <p class="title_dash card_dash-title">BOOKING REQUESTS</p>
+            <p class="card_dash-text fw-bold display-5" id="reves-vendus">
+              <%= @bookings_received.where(status: nil).count %>
+            </p>
           <% end %>
         </div>
+      </div>
 
-        <!-- Booking request pending card -->
-        <div class="username2 card_dash shadow-sm rounded-5 m-1 p-4 hover-zoom">
-          <%= link_to dreamsdashboard_path, class: 'card_dash-body m-3', style: 'display: block; text-decoration: none; color: inherit;' do %>
-            <div class="card_dash-body m-3">
-              <p class="title_dash card_dash-title">BOOKING REQUESTS</p>
-              <p class="card_dash-text fw-bold display-5" id="reves-vendus">
-                <%= @bookings_received.where(status: nil).count %>
-              </p>
-            </div>
-          <% end %>
-        </div>
-
-        <!-- Dreams booked card -->
-        <div class="username2 card_dash shadow-sm rounded-5 m-1 p-4 hover-zoom">
-          <%= link_to bookingsdashboard_path, class: 'card_dash-body m-3', style: 'display: block; text-decoration: none; color: inherit;' do %>
-            <div class="card_dash-body m-3">
-              <p class="title_dash card_dash-title">DREAMS BOOKED</p>
-              <p class="card_dash-text fw-bold display-5" id="reves-vendus">
+      <!-- Dreams Booked Card -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card_dash shadow-sm rounded-5 p-4 hover-zoom">
+          <%= link_to bookingsdashboard_path, class: 'card_dash-body', style: 'display: block; text-decoration: none; color: inherit;' do %>
+            <p class="title_dash card_dash-title">DREAMS BOOKED</p>
+            <p class="card_dash-text fw-bold display-5" id="reves-vendus">
               <%= @user.bookings.where(status: true).count %>
-              </p>
-            </div>
+            </p>
           <% end %>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>

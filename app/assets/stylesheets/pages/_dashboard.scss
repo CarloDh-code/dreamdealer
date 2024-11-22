@@ -3,25 +3,6 @@ body, html {
   position: relative; /* S'assure que le contenu occupe tout l'espace */
 }
 
-.card_dash {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card_dash:hover {
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.username {
-  background-color: rgba(244, 246, 255, 0.337);
-  border: 6px solid;
-  border-color: rgba(255, 255, 255, 0.462);
-}
-
-.username2{
-  background-color: rgba(255, 206, 243, 0.607);
-  border: 6px solid;
-  border-color: rgba(255, 255, 255, 0.462);
-}
 
 .title_dash {
   font-size: 24px;
@@ -32,6 +13,22 @@ body, html {
   transition: transform 0.3s ease-in-out;
 }
 
-.hover-zoom:hover {
-  transform: scale(1.05); /* Augmente la taille de 5% au survol */
+.username {
+  background: #6292d171;
+  color: white;
+  font-size: 1.25rem;
+}
+
+.card_dash {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  background: #edbef584;
+}
+
+.card_dash:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.hover-zoom {
+  cursor: pointer;
 }
