@@ -62,9 +62,9 @@ body, html {
 
 // }
 
-// .maincontainer {
-//   // min-height: calc(100vh - #{$navbar-height} - #{$footer-height});
-// }
+.maincontainer {
+  min-height: 100vh;
+}
 
 
 .homepage-content {

@@ -33,7 +33,7 @@ class BookingsController < ApplicationController
   def decline
     @booking.status = false
     @booking.save!
-    redirect_to dreamsdashboard_path
+_    redirect_to dreamsdashboard_path
   end
 
   def update
