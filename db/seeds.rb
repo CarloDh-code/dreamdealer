@@ -148,3 +148,6 @@ file_photo14 = URI.open(image_path14)
 
 dream13.photos.attach(io: file_photo13, filename: "dream#13#1.png", content_type: "image/png")
 dream13.photos.attach(io: file_photo14, filename: "dream#13#2.png", content_type: "image/png")
+
+
+
