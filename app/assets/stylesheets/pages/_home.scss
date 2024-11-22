@@ -6,7 +6,7 @@
 body, html {
   margin: 0;
   padding: 0;
-  height: 100%; /* S'assure que le contenu occupe tout l'espace */
+  height: 100vh; /* S'assure que le contenu occupe tout l'espace */
 }
 
 .titlebig {
@@ -26,7 +26,8 @@ body, html {
 }
 
 .lead {
-  color: rgba(200, 200, 200, 0.948);
+  color: rgba(144, 38, 173, 0.897);
+  font-weight: 600;
 }
 @keyframes fade-in {
   from {
