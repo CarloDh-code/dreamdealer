@@ -4,24 +4,19 @@
       <div class="container">
         <br>
         <br>
-        <h1 class="display-3 fw-bold mb-3 animate-text">Don't dream your life, live your dreams</h1>
-        <p class="lead mb-4" style="text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);"> Each of your nights is an opportunity to dream: choose the dreams you want to have!</p>
-        <p class="lead mb-4" style="text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);"> Each of your dreams is a creation: share them on DreamDealer!</p>
-        <%= link_to "Explore our dreams", dreams_path, class: "btn btn-light btn-lg rounded-pill px-4 shadow-sm" %>
+        <h1 class="titlebig mb-5 animate-text">Don't dream your life,</h1>
+        <h1 class="titlebig2 mb-5 animate-text"> live your dreams</h1>
+        <p class="lead"> Each of your nights is an opportunity to dream: choose the dreams you want to have!</p>
+        <p class="lead"> Each of your dreams is a creation: share them on DreamDealer!</p>
+        <%= link_to "Explore our dreams", dreams_path, class: "btn btn-light btn-lg rounded-pill px-4 shadow-sm m-5" %>
+        <%= link_to "Share your dreams", new_dream_path, class: "btn btn-light btn-lg rounded-pill px-4 shadow-sm m-5" %>
+        <br>
+        <br>
 
-        <div class="container py-5">
-          <div class="text-center mb-2">
-            <h2 class="fw-bold" style="color: rgba(255, 255, 255, 0.8);">Why would you choose DreamDealer ?</h2>
-            <p class=>Explore our collection : Discover a well-chosen selection of dreams crafted by passionate creators.
-                Choose your journey: Select the dream that speaks to your deepest desires.
-                Let yourself go: Sit back, relax, and immerse yourself in an unforgettable experience.
-           </p>
-          </div>
-        </div>
 
-        <div class="row mb-5">
+        <div class="row my-5">
           <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow border-0" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(240, 240, 255, 0.6)); backdrop-filter: blur(10px); border-radius: 20px;">
+            <div class="card h-100 shadow border-0" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(240, 240, 255, 0.3)); backdrop-filter: blur(10px); border-radius: 20px;">
               <div class="card-body text-center">
                 <i class="fas fa-cloud-moon fa-3x text-primary mb-3"></i>
                 <h5 class="card-title fw-bold">Personalized Dreams</h5>
@@ -31,7 +26,7 @@
           </div>
 
           <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow border-0" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(240, 240, 255, 0.6)); backdrop-filter: blur(10px); border-radius: 20px;">
+            <div class="card h-100 shadow border-0" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(240, 240, 255, 0.3)); backdrop-filter: blur(10px); border-radius: 20px;">
               <div class="card-body text-center">
                 <i class="fas fa-star fa-3x text-warning mb-3"></i>
                 <h5 class="card-title fw-bold">Dream with your beloved</h5>
@@ -41,7 +36,7 @@
           </div>
 
           <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow border-0" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(240, 240, 255, 0.6)); backdrop-filter: blur(10px); border-radius: 20px;">
+            <div class="card h-100 shadow border-0" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(240, 240, 255, 0.3)); backdrop-filter: blur(10px); border-radius: 20px;">
               <div class="card-body text-center">
                 <i class="fas fa-dove fa-3x text-success mb-3"></i>
                 <h5 class="card-title fw-bold">Global Discoveries</h5>
@@ -52,11 +47,15 @@
         </div>
 
 
-        <div class="call-to-action text-center text-white py-5 position-relative" style="background: linear-gradient(45deg, rgba(58, 123, 213, 0.8), rgba(58, 213, 160, 0.8));">
-          <div class="container">
-            <h3 class="fw-bold mb-4">Ready to realise your dreams?</h3>
-            <%= link_to "Become a dreamer now", new_dream_path, class: "btn btn-outline-light btn-lg rounded-pill px-4 shadow-sm" %>
+        <div>
+          <div class="container mb-5">
+
+            <%= link_to "Become a dreamer now", new_dream_path, class: "btn btn-light btn-lg rounded-pill px-4 shadow-sm m-5" %>
           </div>
+          <br>
+          <br>
+          <br>
+          <br>
         </div>
 
 
