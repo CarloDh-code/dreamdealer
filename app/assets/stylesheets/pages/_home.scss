@@ -9,6 +9,25 @@ body, html {
   height: 100%; /* S'assure que le contenu occupe tout l'espace */
 }
 
+.titlebig {
+  font-size: 100px;
+  font-weight: bold;
+  text-shadow: 2px 3px 5px black;
+  color: white;
+  line-height: 1.2px;
+  padding-top: 10px;
+}
+
+.titlebig2 {
+  font-size: 100px;
+  font-weight: bold;
+  text-shadow: 2px 3px 5px black;
+  color: rgb(82, 79, 226);
+}
+
+.lead {
+  color: rgba(200, 200, 200, 0.948);
+}
 @keyframes fade-in {
   from {
     opacity: 0;
