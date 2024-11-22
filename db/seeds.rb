@@ -6,6 +6,7 @@ require 'cloudinary'
 Booking.destroy_all
 Dream.destroy_all
 User.destroy_all
+Review.destroy_all
 
 DESCS = [ " You plunge into a city ablaze, forced to leap across rooftops and dodge explosions to uncover a hidden treasure. The streets are filled with chaos as the fire spreads,
   and every step you take brings you closer to danger. Time is running out,
@@ -151,3 +152,79 @@ file_photo14 = URI.open(image_path14)
 
 dream13.photos.attach(io: file_photo13, filename: "dream#13#1.png", content_type: "image/png")
 dream13.photos.attach(io: file_photo14, filename: "dream#13#2.png", content_type: "image/png")
+
+
+
+# NEW
+
+
+booking1 = Booking.create!(
+  start_date: "2024-11-24",
+  end_date: "2024-11-25",
+  dream: Dream.all.sample,
+  user: User.all.sample,
+  status: true
+)
+booking2 = Booking.create!(
+  start_date: "2024-11-24",
+  end_date: "2024-11-26",
+  dream: Dream.all.sample,
+  user: User.all.sample,
+  status: nil
+)
+booking3 = Booking.create!(
+  start_date: "2024-11-25",
+  end_date: "2024-11-26",
+  dream: Dream.all.sample,
+  user: User.all.sample,
+  status: nil
+)
+booking4 = Booking.create!(
+  start_date: "2024-11-27",
+  end_date: "2024-11-29",
+  dream: Dream.all.sample,
+  user: User.all.sample,
+  status: false
+)
+booking5 = Booking.create!(
+  start_date: "2024-12-10",
+  end_date: "2024-12-13",
+  dream: Dream.all.sample,
+  user: User.all.sample,
+  status: false
+)
+# Reviews :
+# comment
+# rating
+# dfream_id
+# user_id
+review1 = Review.create!(
+  comment: "An unforgettable experience!",
+  rating: 5,
+  dream: Dream.all.sample,
+  user: User.all.sample
+)
+review2 = Review.create!(
+  comment: "Good, but some room for improvement.",
+  rating: 3,
+  dream: Dream.all.sample,
+  user: User.all.sample
+)
+review3 = Review.create!(
+  comment: "Would book again in a heartbeat!",
+  rating: 5,
+  dream: Dream.all.sample,
+  user: User.all.sample
+)
+review4 = Review.create!(
+  comment: "Some parts were great, but others fell flat",
+  rating: 2,
+  dream: Dream.all.sample,
+  user: User.all.sample
+)
+review5 = Review.create!(
+  comment: "An unforgettable experience!",
+  rating: 4,
+  dream: Dream.all.sample,
+  user: User.all.sample
+)
