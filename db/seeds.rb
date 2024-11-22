@@ -79,9 +79,9 @@ carlos = User.create!(email: "carlo@dream.fr", password: "123456", nickname: "ca
       dream = Dream.create!(
         title: TITLES[i],
         description: DESCS[i] ,
-        category: ["action", "success", "lust", "dreamy", "adventure", "travel", "fantasy", "time traveler"].sample,
         price_per_night: rand(25..100),
-        age_limit: rand(12..20) ,
+        category: ["Action", "Success", "Lust", "Dreamy", "Adventure", "Travel", "Fantasy", "Time traveler"].sample,
+        age_limit: [12, 16, 18].sample,
         number_of_roles: rand(1..4) ,
         user: [antou, taib, carlos, mik].sample
       )
@@ -105,9 +105,9 @@ puts "finished"
   dream = Dream.create!(
     title: TITLES[j+8],
     description: DESCS[j+8] ,
-    category: ["action", "success", "lust", "dreamy", "adventure", "travel", "fantasy", "time traveler"].sample,
+    category: ["Action", "Success", "Lust", "Dreamy", "Adventure", "Travel", "Fantasy", "Time traveler"].sample,
     price_per_night: rand(25..100),
-    age_limit: rand(12..20) ,
+    age_limit: [12, 16, 18].sample,
     number_of_roles: rand(1..4) ,
     user: [antou, taib, carlos, mik].sample
   )
@@ -126,3 +126,25 @@ puts "finished"
 
   puts "Created Dream: #{dream.title}"
 end
+
+dream13 = Dream.create!(
+  title: 'Coding Regex Nightmare',
+  description: "You find yourself in a coding bootcamp, The Wagon, on a public holiday, but the pace is relentless. It's a 7-hour live coding session focused on Regex, and your windows are closed to avoid distractions. Despite the holiday, even the \"Master Poulet\" is fully immersed in the grind. As the day drags on, the pressure intensifies, and you realize that your Heroku account has just been charged $2,000. It's a nightmare of code, errors, and unexpected costs, yet the only option is to keep coding through it all." ,
+  category: "Nightmare",
+  price_per_night: 30,
+  age_limit: 18,
+  number_of_roles: 4 ,
+  user: taib
+)
+
+url_1_dream_13 = 'https://res.cloudinary.com/dhwtnnav8/image/upload/v1732232010/dream_13_1_q4pq1g.png'
+url_2_dream_14 = 'https://res.cloudinary.com/dhwtnnav8/image/upload/v1732232010/dream_13_2_lwt8su.png'
+
+image_path13 = url_1_dream_13  # Vous devez remplacer cela par un chemin valide
+file_photo13 = URI.open(image_path13)
+
+image_path14 = url_2_dream_14  # Vous devez remplacer cela par un chemin valide
+file_photo14 = URI.open(image_path14)
+
+dream13.photos.attach(io: file_photo13, filename: "dream#13#1.png", content_type: "image/png")
+dream13.photos.attach(io: file_photo14, filename: "dream#13#2.png", content_type: "image/png")

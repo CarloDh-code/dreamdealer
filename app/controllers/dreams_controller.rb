@@ -17,11 +17,13 @@ before_action :set_dream, only: [:show]
     @dream = Dream.find(params[:id])
     @booking = Booking.new
     @reviews = @dream.reviews
+
   end
 
   def new
     @dream = Dream.new
     @categories = Dream::CATEGORIES
+    @ages = Dream::AGES
   end
 
   def create
