@@ -19,7 +19,10 @@
   </div>
 
   <div class="mb-3">
-    <%= f.input :age_limit, placeholder: "Age limit", input_html: { class: 'form-control' }, label: false %>
+      <%= f.input :age_limit,
+      collection: @ages,
+      input_html: { class: 'form-control', data: { controller: "tom-select" } },label: 'Set an age limit', prompt: 'Set an age limit', label: false %>
+
   </div>
 
   <div class="mb-3">

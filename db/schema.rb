@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_21_134846) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_22_002050) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,7 +58,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_21_134846) do
     t.string "title"
     t.text "description"
     t.string "category"
-    t.float "price_per_night"
+    t.integer "price_per_night"
     t.integer "age_limit"
     t.integer "number_of_roles"
     t.bigint "user_id", null: false
@@ -73,7 +73,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_21_134846) do
     t.bigint "dream_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
     t.index ["dream_id"], name: "index_reviews_on_dream_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -96,4 +98,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_21_134846) do
   add_foreign_key "bookings", "users"
   add_foreign_key "dreams", "users"
   add_foreign_key "reviews", "dreams"
+  add_foreign_key "reviews", "users"
 end
