@@ -6,6 +6,7 @@ require 'cloudinary'
 Booking.destroy_all
 Dream.destroy_all
 User.destroy_all
+Review.destroy_all
 
 DESCS = [ " You plunge into a city ablaze, forced to leap across rooftops and dodge explosions to uncover a hidden treasure. The streets are filled with chaos as the fire spreads,
   and every step you take brings you closer to danger. Time is running out,
@@ -156,25 +157,74 @@ dream13.photos.attach(io: file_photo14, filename: "dream#13#2.png", content_type
 
 # NEW
 
-dream13 = Dream.create!(
-  title: 'Coding Regex Nightmare',
-  description: "You find yourself in a coding bootcamp, The Wagon, on a public holiday, but the pace is relentless. It's a 7-hour live coding session focused on Regex, and your windows are closed to avoid distractions. Despite the holiday, even the \"Master Poulet\" is fully immersed in the grind. As the day drags on, the pressure intensifies, and you realize that your Heroku account has just been charged $2,000. It's a nightmare of code, errors, and unexpected costs, yet the only option is to keep coding through it all." ,
-  category: "Nightmare",
-  price_per_night: 30,
-  age_limit: 18,
-  number_of_roles: 4 ,
-  user: taib,
-  fav_status: false
+
+booking1 = Booking.create!(
+  start_date: "2024-11-24",
+  end_date: "2024-11-25",
+  dream: Dream.all.sample,
+  user: User.all.sample,
+  status: true
 )
-
-url_1_dream_13 = 'https://res.cloudinary.com/dhwtnnav8/image/upload/v1732232010/dream_13_1_q4pq1g.png'
-url_2_dream_14 = 'https://res.cloudinary.com/dhwtnnav8/image/upload/v1732232010/dream_13_2_lwt8su.png'
-
-image_path13 = url_1_dream_13  # Vous devez remplacer cela par un chemin valide
-file_photo13 = URI.open(image_path13)
-
-image_path14 = url_2_dream_14  # Vous devez remplacer cela par un chemin valide
-file_photo14 = URI.open(image_path14)
-
-dream13.photos.attach(io: file_photo13, filename: "dream#13#1.png", content_type: "image/png")
-dream13.photos.attach(io: file_photo14, filename: "dream#13#2.png", content_type: "image/png")
+booking2 = Booking.create!(
+  start_date: "2024-11-24",
+  end_date: "2024-11-26",
+  dream: Dream.all.sample,
+  user: User.all.sample,
+  status: nil
+)
+booking3 = Booking.create!(
+  start_date: "2024-11-25",
+  end_date: "2024-11-26",
+  dream: Dream.all.sample,
+  user: User.all.sample,
+  status: nil
+)
+booking4 = Booking.create!(
+  start_date: "2024-11-27",
+  end_date: "2024-11-29",
+  dream: Dream.all.sample,
+  user: User.all.sample,
+  status: false
+)
+booking5 = Booking.create!(
+  start_date: "2024-12-10",
+  end_date: "2024-12-13",
+  dream: Dream.all.sample,
+  user: User.all.sample,
+  status: false
+)
+# Reviews :
+# comment
+# rating
+# dfream_id
+# user_id
+review1 = Review.create!(
+  comment: "An unforgettable experience!",
+  rating: 5,
+  dream: Dream.all.sample,
+  user: User.all.sample
+)
+review2 = Review.create!(
+  comment: "Good, but some room for improvement.",
+  rating: 3,
+  dream: Dream.all.sample,
+  user: User.all.sample
+)
+review3 = Review.create!(
+  comment: "Would book again in a heartbeat!",
+  rating: 5,
+  dream: Dream.all.sample,
+  user: User.all.sample
+)
+review4 = Review.create!(
+  comment: "Some parts were great, but others fell flat",
+  rating: 2,
+  dream: Dream.all.sample,
+  user: User.all.sample
+)
+review5 = Review.create!(
+  comment: "An unforgettable experience!",
+  rating: 4,
+  dream: Dream.all.sample,
+  user: User.all.sample
+)
