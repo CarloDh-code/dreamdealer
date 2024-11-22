@@ -1,6 +1,6 @@
 class Dream < ApplicationRecord
   has_many :bookings
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
   belongs_to :user
 
   has_many_attached :photos
