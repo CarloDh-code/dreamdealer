@@ -2,7 +2,10 @@ class DreamsController < ApplicationController
 before_action :set_dream, only: [:show]
 
   def index
+    @categories = Dream::CATEGORIES
     @dreams = Dream.all
+
+    # Filtrage par recherche
     if params[:query].present?
       sql_subquery = <<~SQL
         dreams.title ILIKE :query
@@ -10,6 +13,19 @@ before_action :set_dream, only: [:show]
         OR dreams.category ILIKE :query
       SQL
       @dreams = @dreams.joins(:user).where(sql_subquery, query: "%#{params[:query]}%")
+    end
+
+    # Filtrage par catégorie
+    if params[:category].present?
+      @dreams = @dreams.by_category(params[:category])
+    end
+
+    # Tri
+    case params[:sort]
+    when 'recent'
+      @dreams = @dreams.recent
+    when 'best_rated'
+      @dreams = @dreams.best_rated
     end
   end
 
