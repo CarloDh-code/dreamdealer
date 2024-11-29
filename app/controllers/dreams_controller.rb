@@ -1,5 +1,5 @@
 class DreamsController < ApplicationController
-before_action :set_dream, only: [:show]
+before_action :set_dream, only: [:show, :edit, :update, :destroy]
 
   def index
     @categories = Dream::CATEGORIES
@@ -53,12 +53,19 @@ before_action :set_dream, only: [:show]
   end
 
   def update
+    if @dream.update(dream_params)
+      redirect_to dream_path(@dream)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def edit
   end
 
   def destroy
+    @dream.destroy
+    redirect_to dream_path, status: :see_other
   end
 
   private
